@@ -5,8 +5,12 @@
     <events>
         <event-block sid="6121643507726416">
             <conditions>
-                <condition id="0" name="On collision with another object" sid="8459243103822172" type="cube">
+                <condition id="1" name="Is overlapping another object" sid="8459243103822172" type="cube">
                     <param id="0" name="Object">player</param>
+                </condition>
+                <condition id="-10" name="Compare opacity" sid="9469401528560324" type="shield">
+                    <param id="0" name="Comparison">0</param>
+                    <param id="1" name="Opacity">0</param>
                 </condition>
             </conditions>
             <actions>
