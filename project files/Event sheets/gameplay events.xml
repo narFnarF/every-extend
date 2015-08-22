@@ -2,5 +2,80 @@
 <c2eventsheet>
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>gameplay events</name>
-    <events />
+    <events>
+        <event-block sid="6121643507726416">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="8459243103822172" type="cube">
+                    <param id="0" name="Object">player</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-15" name="Set visible" sid="3820319809472252" type="player">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="8960795594925836">
+            <conditions>
+                <condition id="0" name="On key pressed" sid="583034789239851" type="Keyboard">
+                    <param id="0" name="Key">32 (Espace)</param>
+                </condition>
+                <condition id="-9" name="Is visible" sid="8528652834164294" type="player" />
+            </conditions>
+            <actions>
+                <action id="-3" name="Create object" sid="5471638169799469" type="System">
+                    <param id="0" name="Object to create">explosion</param>
+                    <param id="1" name="Layer">&quot;game&quot;</param>
+                    <param id="2" name="X">player.X</param>
+                    <param id="3" name="Y">player.Y</param>
+                </action>
+                <action behavior="Fade" disabled="1" id="1" name="Start fade" sid="2549274813644891" type="explosion" />
+            </actions>
+        </event-block>
+        <event-block sid="7657808143982968">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="6069795459913605" type="cube">
+                    <param id="0" name="Object">explosion</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-16" name="Wait" sid="4588189383204006" type="System">
+                    <param id="0" name="Seconds">0.1</param>
+                </action>
+                <action id="-3" name="Create object" sid="8557758154138044" type="System">
+                    <param id="0" name="Object to create">explosion</param>
+                    <param id="1" name="Layer">&quot;game&quot;</param>
+                    <param id="2" name="X">cube.X</param>
+                    <param id="3" name="Y">cube.Y</param>
+                </action>
+                <action id="-9" name="Destroy" sid="3962666338570493" type="cube" />
+            </actions>
+        </event-block>
+        <event-block sid="7378722217005315">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="3893977868329524" type="System">
+                    <param id="0" name="Interval (seconds)">0.5</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Create object" sid="1394293064663402" type="System">
+                    <param id="0" name="Object to create">cube</param>
+                    <param id="1" name="Layer">&quot;game&quot;</param>
+                    <param id="2" name="X">0</param>
+                    <param id="3" name="Y">random(0, LayoutHeight)</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="409030754570707">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="9660442476752268" type="System" />
+            </conditions>
+            <actions>
+                <action id="-4" name="Set position to another object" sid="4931842660418118" type="shield">
+                    <param id="0" name="Object">player</param>
+                    <param id="1" name="Image point (optional)">0</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
 </c2eventsheet>

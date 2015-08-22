@@ -9,8 +9,16 @@
     <app-id>ca.narF.extend</app-id>
     <unique-id>2m2oqhlgof90t</unique-id>
     <saved-with-version>21202</saved-with-version>
-    <used-plugins />
-    <used-behaviors />
+    <used-plugins>
+        <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
+        <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
+    </used-plugins>
+    <used-behaviors>
+        <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
+        <behavior author="Scirra" id="EightDir" version="1">8 Direction</behavior>
+        <behavior author="Scirra" id="Fade" version="1">Fade</behavior>
+        <behavior author="Scirra" id="Timer" version="1">Timer</behavior>
+    </used-behaviors>
     <used-effects />
     <configurations>
         <configuration exporter-descname="HTML5" exporter-id="html5" name="HTML5" />
@@ -35,7 +43,72 @@
         <prop name="Sampling">Linear</prop>
         <prop name="Use high-DPI display">Yes</prop>
     </configuration-settings>
-    <object-folder />
+    <object-folder>
+        <object-type name="player" sid="8968264721218001">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="8Direction" sid="2059569107753229">
+                    <behavior id="EightDir" />
+                </behavior-type>
+                <behavior-type name="Timer" sid="5714360073084822">
+                    <behavior id="Timer" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5062439153057319" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="cube" sid="447555334700318">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Bullet" sid="4851169354279866">
+                    <behavior id="Bullet" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="30974461335816" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="explosion" sid="4696822539945409">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Fade" sid="6782655380556056">
+                    <behavior id="Fade" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="2160378263520157" speed="10">
+                    <frame duration="1" hotspotX="0.502392" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.124402" y="0.117925" />
+                            <point x="0.492823" y="0" />
+                            <point x="0.885168" y="0.188679" />
+                            <point x="1" y="0.504717" />
+                            <point x="0.904306" y="0.915094" />
+                            <point x="0.497608" y="1" />
+                            <point x="0.119617" y="0.882076" />
+                            <point x="0" y="0.514151" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Keyboard" sid="3793982190329022">
+            <plugin id="Keyboard" />
+        </object-type>
+        <object-type name="shield" sid="1810530618818006">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7063354682694421" speed="5">
+                    <frame duration="1" hotspotX="0.509804" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+    </object-folder>
     <families />
     <layout-folder>
         <layout>gameplay.xml</layout>
@@ -43,7 +116,9 @@
     <event-folder>
         <event-sheet>gameplay events.xml</event-sheet>
     </event-folder>
-    <global-instances />
+    <global-instances>
+        <global-instance type="Keyboard" uid="3" />
+    </global-instances>
     <sounds-folder />
     <music-folder />
     <files-folder>
