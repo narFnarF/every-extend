@@ -6,29 +6,40 @@
         <variable constant="0" name="score" sid="3656604472204222" static="0" type="number">0</variable>
         <event-group description="" sid="7776942201502172" title="player">
             <sub-events>
-                <event-block sid="8960795594925836">
+                <event-block any="1" sid="8960795594925836">
                     <conditions>
                         <condition id="0" name="On key pressed" sid="583034789239851" type="Keyboard">
                             <param id="0" name="Key">32 (Espace)</param>
                         </condition>
-                        <condition id="-9" name="Is visible" sid="8528652834164294" type="player" />
-                        <condition id="-10" name="Compare opacity" sid="7327758932403033" type="shield">
-                            <param id="0" name="Comparison">0</param>
-                            <param id="1" name="Opacity">0</param>
+                        <condition id="6" name="On button pressed" sid="3703405673441661" type="Gamepad">
+                            <param id="0" name="Gamepad">0</param>
+                            <param id="1" name="Button">0</param>
                         </condition>
                     </conditions>
-                    <actions>
-                        <action id="-3" name="Create object" sid="5471638169799469" type="System">
-                            <param id="0" name="Object to create">explosion</param>
-                            <param id="1" name="Layer">&quot;game&quot;</param>
-                            <param id="2" name="X">player.X</param>
-                            <param id="3" name="Y">player.Y</param>
-                        </action>
-                        <action id="0" name="Call function" sid="3023545919247356" type="Function">
-                            <param id="0" name="Name">&quot;player destroyed&quot;</param>
-                            <param id="1" name="Parameter {n}"></param>
-                        </action>
-                    </actions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="3136743719920977">
+                            <conditions>
+                                <condition id="-9" name="Is visible" sid="8528652834164294" type="player" />
+                                <condition id="-10" name="Compare opacity" sid="7327758932403033" type="shield">
+                                    <param id="0" name="Comparison">0</param>
+                                    <param id="1" name="Opacity">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="5471638169799469" type="System">
+                                    <param id="0" name="Object to create">explosion</param>
+                                    <param id="1" name="Layer">&quot;game&quot;</param>
+                                    <param id="2" name="X">player.X</param>
+                                    <param id="3" name="Y">player.Y</param>
+                                </action>
+                                <action id="0" name="Call function" sid="3023545919247356" type="Function">
+                                    <param id="0" name="Name">&quot;player destroyed&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
                 <event-block sid="409030754570707">
                     <conditions>
@@ -404,7 +415,7 @@
             <actions>
                 <action id="0" name="Call function" sid="2464739221184908" type="Function">
                     <param id="0" name="Name">&quot;spawn group&quot;</param>
-                    <param id="1" name="Parameter {n}">&quot;normal&quot;{###}3{###}1</param>
+                    <param id="1" name="Parameter {n}">&quot;quicken&quot;{###}3{###}1</param>
                 </action>
             </actions>
         </event-block>
@@ -412,7 +423,7 @@
             <conditions />
             <actions>
                 <action id="0" name="Set text" sid="4539424454752349" type="display">
-                    <param id="0" name="Text">&quot;score: &quot; &amp; score &amp; newline &amp;&#x0D;&#x0A;&quot;end&quot;</param>
+                    <param id="0" name="Text">&quot;score: &quot; &amp; score &amp; &quot;&#x0D;&#x0A;end&quot;</param>
                 </action>
             </actions>
         </event-block>
@@ -424,11 +435,80 @@
             </conditions>
             <actions>
                 <action id="-9" name="Destroy" sid="1913554793832027" type="bonus" />
-                <action id="-10" name="Add to" sid="3605602161184652" type="System">
-                    <param id="0" name="Variable">score</param>
-                    <param id="1" name="Value">1</param>
-                </action>
             </actions>
+            <sub-events>
+                <event-block sid="3646898394870897">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="1906710273894678" type="bonus">
+                            <param id="0" name="Instance variable">type</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;bonus&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Add to" sid="3605602161184652" type="System">
+                            <param id="0" name="Variable">score</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
         </event-block>
+        <event-group description="" sid="1979279294309583" title="Controller">
+            <sub-events>
+                <event-block sid="8898605514627138">
+                    <conditions>
+                        <condition id="3" name="Is button down" sid="7794431823240011" type="Gamepad">
+                            <param id="0" name="Gamepad">0</param>
+                            <param id="1" name="Button">12</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="7" name="Simulate control" sid="2258458341429335" type="player">
+                            <param id="0" name="Control">2</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="3614421917264127">
+                    <conditions>
+                        <condition id="3" name="Is button down" sid="5213912088561198" type="Gamepad">
+                            <param id="0" name="Gamepad">0</param>
+                            <param id="1" name="Button">13</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="7" name="Simulate control" sid="6260702418479467" type="player">
+                            <param id="0" name="Control">3</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="4830032690017578">
+                    <conditions>
+                        <condition id="3" name="Is button down" sid="8402931370172717" type="Gamepad">
+                            <param id="0" name="Gamepad">0</param>
+                            <param id="1" name="Button">14</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="7" name="Simulate control" sid="8071540866316917" type="player">
+                            <param id="0" name="Control">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="326581804509218">
+                    <conditions>
+                        <condition id="3" name="Is button down" sid="9647034655396768" type="Gamepad">
+                            <param id="0" name="Gamepad">0</param>
+                            <param id="1" name="Button">15</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="7" name="Simulate control" sid="693148961254864" type="player">
+                            <param id="0" name="Control">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
     </events>
 </c2eventsheet>

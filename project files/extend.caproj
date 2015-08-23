@@ -14,6 +14,7 @@
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="Scirra" id="Text" version="1">Text</plugin>
+        <plugin author="Scirra" id="gamepad" version="1">Gamepad</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
@@ -206,6 +207,9 @@
         <object-type name="display" sid="4970109556254132">
             <plugin id="Text" />
         </object-type>
+        <object-type name="Gamepad" sid="1545753689024613">
+            <plugin id="gamepad" />
+        </object-type>
     </object-folder>
     <families />
     <layout-folder>
@@ -217,6 +221,11 @@
     <global-instances>
         <global-instance type="Keyboard" uid="3" />
         <global-instance type="Function" uid="5" />
+        <global-instance type="Gamepad" uid="10">
+            <properties>
+                <analog-deadzone>25</analog-deadzone>
+            </properties>
+        </global-instance>
     </global-instances>
     <sounds-folder />
     <music-folder />
