@@ -28,7 +28,30 @@
             <use-render-cells>0</use-render-cells>
             <blend-mode>0</blend-mode>
             <effect-fallback>0</effect-fallback>
-            <instances />
+            <instances>
+                <instance type="limit" uid="6">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>425.109558105</x>
+                        <y>249.555953979</y>
+                        <z>0</z>
+                        <width>404.03012085</width>
+                        <height>397.408996582</height>
+                        <depth>0</depth>
+                        <hotspotX>0.48017621</hotspotX>
+                        <hotspotY>0.525581419</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+            </instances>
             <effects />
         </layer>
         <layer name="game" sid="111222821168076">
@@ -105,8 +128,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>220.8152771</x>
-                        <y>109.722488403</y>
+                        <x>128.087936401</x>
+                        <y>107.904190063</y>
                         <z>0</z>
                         <width>25.809677124</width>
                         <height>25.809677124</height>

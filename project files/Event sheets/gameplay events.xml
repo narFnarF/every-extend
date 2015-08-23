@@ -14,8 +14,9 @@
                 </condition>
             </conditions>
             <actions>
-                <action id="-15" name="Set visible" sid="3820319809472252" type="player">
-                    <param id="0" name="Visibility">0</param>
+                <action id="0" name="Call function" sid="8190324704075321" type="Function">
+                    <param id="0" name="Name">&quot;player destroyed&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
                 </action>
             </actions>
         </event-block>
@@ -25,6 +26,10 @@
                     <param id="0" name="Key">32 (Espace)</param>
                 </condition>
                 <condition id="-9" name="Is visible" sid="8528652834164294" type="player" />
+                <condition id="-10" name="Compare opacity" sid="7327758932403033" type="shield">
+                    <param id="0" name="Comparison">0</param>
+                    <param id="1" name="Opacity">0</param>
+                </condition>
             </conditions>
             <actions>
                 <action id="-3" name="Create object" sid="5471638169799469" type="System">
@@ -32,6 +37,10 @@
                     <param id="1" name="Layer">&quot;game&quot;</param>
                     <param id="2" name="X">player.X</param>
                     <param id="3" name="Y">player.Y</param>
+                </action>
+                <action id="0" name="Call function" sid="3023545919247356" type="Function">
+                    <param id="0" name="Name">&quot;player destroyed&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
                 </action>
                 <action behavior="Fade" disabled="1" id="1" name="Start fade" sid="2549274813644891" type="explosion" />
             </actions>
@@ -62,13 +71,124 @@
                 </condition>
             </conditions>
             <actions>
-                <action id="-3" name="Create object" sid="1394293064663402" type="System">
+                <action id="-3" name="Create object" sid="1975070686206281" type="System">
                     <param id="0" name="Object to create">cube</param>
                     <param id="1" name="Layer">&quot;game&quot;</param>
                     <param id="2" name="X">0</param>
-                    <param id="3" name="Y">random(0, LayoutHeight)</param>
+                    <param id="3" name="Y">0</param>
                 </action>
             </actions>
+            <sub-events>
+                <variable constant="0" name="angleVariation" sid="6387991088381746" static="0" type="number">20</variable>
+                <variable constant="0" name="side" sid="2375370323349945" static="0" type="text"></variable>
+                <event-block sid="309979876549186">
+                    <conditions />
+                    <actions>
+                        <action id="-9" name="Set value" sid="2396986776458345" type="System">
+                            <param id="0" name="Variable">side</param>
+                            <param id="1" name="Value">choose(&quot;left&quot;, &quot;right&quot;, &quot;up&quot;, &quot;down&quot;)</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="4841394892129995">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="4920081328207231" type="System">
+                                    <param id="0" name="Variable">side</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;left&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action disabled="1" id="-3" name="Create object" sid="1394293064663402" type="System">
+                                    <param id="0" name="Object to create">cube</param>
+                                    <param id="1" name="Layer">&quot;game&quot;</param>
+                                    <param id="2" name="X">0</param>
+                                    <param id="3" name="Y">random(0, LayoutHeight)</param>
+                                </action>
+                                <action id="-3" name="Set position" sid="662367906082751" type="cube">
+                                    <param id="0" name="X">0</param>
+                                    <param id="1" name="Y">random(0, LayoutHeight)</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="9760305371229318">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="3748487455629685" type="System">
+                                    <param id="0" name="Variable">side</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;right&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action disabled="1" id="-3" name="Create object" sid="6699037691019527" type="System">
+                                    <param id="0" name="Object to create">cube</param>
+                                    <param id="1" name="Layer">&quot;game&quot;</param>
+                                    <param id="2" name="X">LayoutWidth</param>
+                                    <param id="3" name="Y">random(0, LayoutHeight)</param>
+                                </action>
+                                <action id="-3" name="Set position" sid="6068655207839259" type="cube">
+                                    <param id="0" name="X">LayoutWidth</param>
+                                    <param id="1" name="Y">random(0, LayoutHeight)</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="4541192003755991">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="3762371842894406" type="System">
+                                    <param id="0" name="Variable">side</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;up&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action disabled="1" id="-3" name="Create object" sid="3401106816853803" type="System">
+                                    <param id="0" name="Object to create">cube</param>
+                                    <param id="1" name="Layer">&quot;game&quot;</param>
+                                    <param id="2" name="X">random(0, LayoutWidth)</param>
+                                    <param id="3" name="Y">0</param>
+                                </action>
+                                <action id="-3" name="Set position" sid="6880750315419131" type="cube">
+                                    <param id="0" name="X">random(0, LayoutWidth)</param>
+                                    <param id="1" name="Y">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="8524218218295844">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="4993229715969887" type="System">
+                                    <param id="0" name="Variable">side</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;down&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action disabled="1" id="-3" name="Create object" sid="9447149175857181" type="System">
+                                    <param id="0" name="Object to create">cube</param>
+                                    <param id="1" name="Layer">&quot;game&quot;</param>
+                                    <param id="2" name="X">random(0, LayoutWidth)</param>
+                                    <param id="3" name="Y">LayoutHeight</param>
+                                </action>
+                                <action id="-3" name="Set position" sid="5902364587276857" type="cube">
+                                    <param id="0" name="X">random(0, LayoutWidth)</param>
+                                    <param id="1" name="Y">LayoutHeight</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="7244051032185559">
+                    <conditions />
+                    <actions>
+                        <action id="-22" name="Set angle toward position" sid="9992145479699976" type="cube">
+                            <param id="0" name="X">LayoutWidth/2</param>
+                            <param id="1" name="Y">LayoutHeight/2</param>
+                        </action>
+                        <action id="-8" name="Set angle" sid="4783704938761859" type="cube">
+                            <param id="0" name="Angle">cube.Angle + random(-angleVariation, angleVariation)</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
         </event-block>
         <event-block sid="409030754570707">
             <conditions>
@@ -78,6 +198,58 @@
                 <action id="-4" name="Set position to another object" sid="4931842660418118" type="shield">
                     <param id="0" name="Object">player</param>
                     <param id="1" name="Image point (optional)">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="4002875703470777">
+            <conditions>
+                <condition behavior="Timer" id="0" name="On timer" sid="44198855662919" type="player">
+                    <param id="0" name="Tag">&quot;dead&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-15" name="Set visible" sid="423832793484537" type="player">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="-15" name="Set visible" sid="7891680499081253" type="shield">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action behavior="Fade" id="0" name="Restart fade" sid="8739105973464978" type="shield" />
+            </actions>
+        </event-block>
+        <event-block sid="1838549909633475">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="2619987674113067" type="System">
+                    <param id="0" name="First value">distance(player.X, player.Y, LayoutWidth/2, LayoutHeight/2)</param>
+                    <param id="1" name="Comparison">4</param>
+                    <param id="2" name="Second value">200</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="8Direction" id="1" name="Reverse" sid="1770142732926102" type="player" />
+            </actions>
+        </event-block>
+        <event-block sid="7179577900930684">
+            <conditions>
+                <condition id="0" name="On function" sid="7004109016416961" type="Function">
+                    <param id="0" name="Name">&quot;player destroyed&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-15" name="Set visible" sid="3820319809472252" type="player">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action behavior="Timer" id="0" name="Start timer" sid="4639070366089648" type="player">
+                    <param id="0" name="Duration">0.5</param>
+                    <param id="1" name="Type">0</param>
+                    <param id="2" name="Tag">&quot;dead&quot;</param>
+                </action>
+                <action id="-3" name="Set position" sid="3683932301616069" type="player">
+                    <param id="0" name="X">LayoutWidth/2</param>
+                    <param id="1" name="Y">LayoutHeight/2</param>
+                </action>
+                <action id="-15" name="Set visible" sid="6602598790316731" type="shield">
+                    <param id="0" name="Visibility">0</param>
                 </action>
             </actions>
         </event-block>
