@@ -4,6 +4,7 @@
     <name>gameplay events</name>
     <events>
         <variable constant="0" name="score" sid="3656604472204222" static="0" type="number">0</variable>
+        <variable constant="0" name="quickens" sid="6521509192566379" static="0" type="number">5</variable>
         <event-group description="" sid="7776942201502172" title="player">
             <sub-events>
                 <event-block any="1" sid="8960795594925836">
@@ -55,7 +56,7 @@
                 <event-block sid="4002875703470777">
                     <conditions>
                         <condition behavior="Timer" id="0" name="On timer" sid="44198855662919" type="player">
-                            <param id="0" name="Tag">&quot;dead&quot;</param>
+                            <param id="0" name="Tag">&quot;respawn&quot;</param>
                         </condition>
                     </conditions>
                     <actions>
@@ -93,7 +94,7 @@
                         <action behavior="Timer" id="0" name="Start timer" sid="4639070366089648" type="player">
                             <param id="0" name="Duration">0.5</param>
                             <param id="1" name="Type">0</param>
-                            <param id="2" name="Tag">&quot;dead&quot;</param>
+                            <param id="2" name="Tag">&quot;respawn&quot;</param>
                         </action>
                         <action id="-3" name="Set position" sid="3683932301616069" type="player">
                             <param id="0" name="X">LayoutWidth/2</param>
@@ -118,11 +119,16 @@
                             <param id="0" name="Comparison">0</param>
                             <param id="1" name="Opacity">0</param>
                         </condition>
+                        <condition id="-9" name="Is visible" sid="2401311366681633" type="player" />
                     </conditions>
                     <actions>
                         <action id="0" name="Call function" sid="8190324704075321" type="Function">
                             <param id="0" name="Name">&quot;player destroyed&quot;</param>
                             <param id="1" name="Parameter {n}"></param>
+                        </action>
+                        <action id="-9" name="Set value" sid="5500499965260547" type="System">
+                            <param id="0" name="Variable">quickens</param>
+                            <param id="1" name="Value">floor(quickens/2)</param>
                         </action>
                     </actions>
                 </event-block>
@@ -161,23 +167,23 @@
                             </conditions>
                             <actions>
                                 <action id="-3" name="Create object" sid="1047524105560327" type="System">
-                                    <param id="0" name="Object to create">bonus</param>
+                                    <param id="0" name="Object to create">collectible</param>
                                     <param id="1" name="Layer">&quot;game&quot;</param>
                                     <param id="2" name="X">cube.X</param>
                                     <param id="3" name="Y">cube.Y</param>
                                 </action>
-                                <action id="-10" name="Set value" sid="3483991056627422" type="bonus">
+                                <action id="-10" name="Set value" sid="3483991056627422" type="collectible">
                                     <param id="0" name="Instance variable">type</param>
                                     <param id="1" name="Value">cube.holding</param>
                                 </action>
-                                <action id="4" name="Set animation" sid="5598141131846915" type="bonus">
-                                    <param id="0" name="Animation">bonus.type</param>
+                                <action id="4" name="Set animation" sid="5598141131846915" type="collectible">
+                                    <param id="0" name="Animation">collectible.type</param>
                                     <param id="1" name="From">1</param>
                                 </action>
-                                <action behavior="Bullet" id="0" name="Set speed" sid="7247017188582375" type="bonus">
+                                <action behavior="Bullet" id="0" name="Set speed" sid="7247017188582375" type="collectible">
                                     <param id="0" name="Speed">cube.Bullet.Speed*0.3</param>
                                 </action>
-                                <action id="-8" name="Set angle" sid="6875973889695884" type="bonus">
+                                <action id="-8" name="Set angle" sid="6875973889695884" type="collectible">
                                     <param id="0" name="Angle">cube.Angle</param>
                                 </action>
                             </actions>
@@ -406,16 +412,71 @@
                 </event-block>
             </sub-events>
         </event-group>
+        <event-block disabled="1" sid="4393056918750493">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="2349252343326471" type="System">
+                    <param id="0" name="Interval (seconds)">1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="1645972886486366" type="Function">
+                    <param id="0" name="Name">&quot;spawn group&quot;</param>
+                    <param id="1" name="Parameter {n}">&quot;normal&quot;{###}3{###}1</param>
+                </action>
+                <action id="0" name="Call function" sid="4886432198626932" type="Function">
+                    <param id="0" name="Name">&quot;spawn group&quot;</param>
+                    <param id="1" name="Parameter {n}">&quot;normal&quot;{###}3{###}1</param>
+                </action>
+                <action id="0" name="Call function" sid="7596224763712552" type="Function">
+                    <param id="0" name="Name">&quot;spawn group&quot;</param>
+                    <param id="1" name="Parameter {n}">&quot;normal&quot;{###}3{###}1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block disabled="1" sid="9514660369502115">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="8422625431241722" type="System">
+                    <param id="0" name="Interval (seconds)">1.2</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="457600054983219" type="Function">
+                    <param id="0" name="Name">&quot;spawn group&quot;</param>
+                    <param id="1" name="Parameter {n}">&quot;quicken&quot;{###}1{###}1</param>
+                </action>
+                <action id="0" name="Call function" sid="782163332575402" type="Function">
+                    <param id="0" name="Name">&quot;spawn group&quot;</param>
+                    <param id="1" name="Parameter {n}">&quot;quicken&quot;{###}1{###}1</param>
+                </action>
+                <action id="0" name="Call function" sid="3956559525286948" type="Function">
+                    <param id="0" name="Name">&quot;spawn group&quot;</param>
+                    <param id="1" name="Parameter {n}">&quot;quicken&quot;{###}1{###}1</param>
+                </action>
+            </actions>
+        </event-block>
         <event-block sid="3769952211036281">
             <conditions>
                 <condition id="-6" name="Every X seconds" sid="3893977868329524" type="System">
-                    <param id="0" name="Interval (seconds)">1</param>
+                    <param id="0" name="Interval (seconds)">10/(quickens+1)</param>
                 </condition>
             </conditions>
             <actions>
                 <action id="0" name="Call function" sid="2464739221184908" type="Function">
                     <param id="0" name="Name">&quot;spawn group&quot;</param>
-                    <param id="1" name="Parameter {n}">&quot;quicken&quot;{###}3{###}1</param>
+                    <param id="1" name="Parameter {n}">&quot;normal&quot;{###}3{###}1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="2273403092886171">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="2310276072566726" type="System">
+                    <param id="0" name="Interval (seconds)">6*(quickens+1)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="1936377716862436" type="Function">
+                    <param id="0" name="Name">&quot;spawn group&quot;</param>
+                    <param id="1" name="Parameter {n}">&quot;quicken&quot;{###}1{###}1</param>
                 </action>
             </actions>
         </event-block>
@@ -423,37 +484,56 @@
             <conditions />
             <actions>
                 <action id="0" name="Set text" sid="4539424454752349" type="display">
-                    <param id="0" name="Text">&quot;score: &quot; &amp; score &amp; &quot;&#x0D;&#x0A;end&quot;</param>
+                    <param id="0" name="Text">&quot;score: &quot; &amp; score &amp; &quot;&#x0D;&#x0A;quickens: &quot; &amp; quickens &amp; &quot;&#x0D;&#x0A;time: &quot; &amp; &quot;asdf&quot;</param>
                 </action>
             </actions>
         </event-block>
-        <event-block sid="8361703095010277">
-            <conditions>
-                <condition id="0" name="On collision with another object" sid="2850255818596503" type="player">
-                    <param id="0" name="Object">bonus</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="-9" name="Destroy" sid="1913554793832027" type="bonus" />
-            </actions>
+        <event-group description="" sid="3579855747222307" title="collectible">
             <sub-events>
-                <event-block sid="3646898394870897">
+                <event-block sid="8361703095010277">
                     <conditions>
-                        <condition id="-7" name="Compare instance variable" sid="1906710273894678" type="bonus">
-                            <param id="0" name="Instance variable">type</param>
-                            <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Value">&quot;bonus&quot;</param>
+                        <condition id="0" name="On collision with another object" sid="2850255818596503" type="player">
+                            <param id="0" name="Object">collectible</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-10" name="Add to" sid="3605602161184652" type="System">
-                            <param id="0" name="Variable">score</param>
-                            <param id="1" name="Value">1</param>
-                        </action>
+                        <action id="-9" name="Destroy" sid="1913554793832027" type="collectible" />
                     </actions>
+                    <sub-events>
+                        <event-block sid="3646898394870897">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="1906710273894678" type="collectible">
+                                    <param id="0" name="Instance variable">type</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;bonus&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Add to" sid="3605602161184652" type="System">
+                                    <param id="0" name="Variable">score</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="5715542199118776">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="3402746425878599" type="collectible">
+                                    <param id="0" name="Instance variable">type</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;quicken&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Add to" sid="6541557306042467" type="System">
+                                    <param id="0" name="Variable">quickens</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
             </sub-events>
-        </event-block>
+        </event-group>
         <event-group description="" sid="1979279294309583" title="Controller">
             <sub-events>
                 <event-block sid="8898605514627138">

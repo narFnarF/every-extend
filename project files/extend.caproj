@@ -47,6 +47,17 @@
         <prop name="Use high-DPI display">Yes</prop>
     </configuration-settings>
     <object-folder>
+        <object-folder name="plugins">
+            <object-type name="Function" sid="8785287189412863">
+                <plugin id="Function" />
+            </object-type>
+            <object-type name="Gamepad" sid="1545753689024613">
+                <plugin id="gamepad" />
+            </object-type>
+            <object-type name="Keyboard" sid="3793982190329022">
+                <plugin id="Keyboard" />
+            </object-type>
+        </object-folder>
         <object-type name="player" sid="8968264721218001">
             <plugin id="Sprite" />
             <behaviors>
@@ -106,9 +117,6 @@
                 </animation>
             </animation-folder>
         </object-type>
-        <object-type name="Keyboard" sid="3793982190329022">
-            <plugin id="Keyboard" />
-        </object-type>
         <object-type name="shield" sid="1810530618818006">
             <plugin id="Sprite" />
             <behaviors>
@@ -121,9 +129,6 @@
                     <frame duration="1" hotspotX="0.509804" hotspotY="0.5" />
                 </animation>
             </animation-folder>
-        </object-type>
-        <object-type name="Function" sid="8785287189412863">
-            <plugin id="Function" />
         </object-type>
         <object-type name="limit" sid="9028838867348424">
             <plugin id="Sprite" />
@@ -173,7 +178,7 @@
                 </animation>
             </animation-folder>
         </object-type>
-        <object-type name="bonus" sid="62695211737116">
+        <object-type name="collectible" sid="62695211737116">
             <plugin id="Sprite" />
             <instance-variables>
                 <instance-variable name="type" sid="6309811248614259" type="string" />
@@ -206,9 +211,6 @@
         </object-type>
         <object-type name="display" sid="4970109556254132">
             <plugin id="Text" />
-        </object-type>
-        <object-type name="Gamepad" sid="1545753689024613">
-            <plugin id="gamepad" />
         </object-type>
     </object-folder>
     <families />
