@@ -190,6 +190,15 @@
                         </event-block>
                     </sub-events>
                 </event-block>
+                <event-block sid="3078873460509375">
+                    <conditions />
+                    <actions>
+                        <action id="4" name="Set animation" sid="5870654056527807" type="cube">
+                            <param id="0" name="Animation">cube.holding</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
             </sub-events>
         </event-group>
         <event-group description="" sid="3970282809621722" title="spawner">
@@ -398,9 +407,9 @@
                                             <conditions />
                                             <actions>
                                                 <action id="-9" name="Destroy" sid="5024528418399984" type="cubeHolder" />
-                                                <action id="4" name="Set animation" sid="9134428495779898" type="cube">
-                                                    <param id="0" name="Animation">cube.holding</param>
-                                                    <param id="1" name="From">1</param>
+                                                <action disabled="1" id="14" name="Log" sid="8592608648559341" type="Browser">
+                                                    <param id="0" name="Type">0</param>
+                                                    <param id="1" name="Message">&quot;picked: &quot; &amp; cube.PickedCount</param>
                                                 </action>
                                             </actions>
                                         </event-block>
@@ -412,82 +421,80 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-block disabled="1" sid="4393056918750493">
-            <conditions>
-                <condition id="-6" name="Every X seconds" sid="2349252343326471" type="System">
-                    <param id="0" name="Interval (seconds)">1</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="0" name="Call function" sid="1645972886486366" type="Function">
-                    <param id="0" name="Name">&quot;spawn group&quot;</param>
-                    <param id="1" name="Parameter {n}">&quot;normal&quot;{###}3{###}1</param>
-                </action>
-                <action id="0" name="Call function" sid="4886432198626932" type="Function">
-                    <param id="0" name="Name">&quot;spawn group&quot;</param>
-                    <param id="1" name="Parameter {n}">&quot;normal&quot;{###}3{###}1</param>
-                </action>
-                <action id="0" name="Call function" sid="7596224763712552" type="Function">
-                    <param id="0" name="Name">&quot;spawn group&quot;</param>
-                    <param id="1" name="Parameter {n}">&quot;normal&quot;{###}3{###}1</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block disabled="1" sid="9514660369502115">
-            <conditions>
-                <condition id="-6" name="Every X seconds" sid="8422625431241722" type="System">
-                    <param id="0" name="Interval (seconds)">1.2</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="0" name="Call function" sid="457600054983219" type="Function">
-                    <param id="0" name="Name">&quot;spawn group&quot;</param>
-                    <param id="1" name="Parameter {n}">&quot;quicken&quot;{###}1{###}1</param>
-                </action>
-                <action id="0" name="Call function" sid="782163332575402" type="Function">
-                    <param id="0" name="Name">&quot;spawn group&quot;</param>
-                    <param id="1" name="Parameter {n}">&quot;quicken&quot;{###}1{###}1</param>
-                </action>
-                <action id="0" name="Call function" sid="3956559525286948" type="Function">
-                    <param id="0" name="Name">&quot;spawn group&quot;</param>
-                    <param id="1" name="Parameter {n}">&quot;quicken&quot;{###}1{###}1</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block sid="3769952211036281">
-            <conditions>
-                <condition id="-6" name="Every X seconds" sid="3893977868329524" type="System">
-                    <param id="0" name="Interval (seconds)">10/(quickens+1)</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="0" name="Call function" sid="2464739221184908" type="Function">
-                    <param id="0" name="Name">&quot;spawn group&quot;</param>
-                    <param id="1" name="Parameter {n}">&quot;normal&quot;{###}3{###}1</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block sid="2273403092886171">
-            <conditions>
-                <condition id="-6" name="Every X seconds" sid="2310276072566726" type="System">
-                    <param id="0" name="Interval (seconds)">6*(quickens+1)</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="0" name="Call function" sid="1936377716862436" type="Function">
-                    <param id="0" name="Name">&quot;spawn group&quot;</param>
-                    <param id="1" name="Parameter {n}">&quot;quicken&quot;{###}1{###}1</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block sid="6063937329164069">
-            <conditions />
-            <actions>
-                <action id="0" name="Set text" sid="4539424454752349" type="display">
-                    <param id="0" name="Text">&quot;score: &quot; &amp; score &amp; &quot;&#x0D;&#x0A;quickens: &quot; &amp; quickens &amp; &quot;&#x0D;&#x0A;time: &quot; &amp; &quot;asdf&quot;</param>
-                </action>
-            </actions>
-        </event-block>
+        <event-group description="" sid="9530105565056968" title="flow spawner">
+            <sub-events>
+                <event-block sid="6733288389352093">
+                    <conditions />
+                    <actions>
+                        <action id="-11" name="Add to" sid="4337584311722304" type="AIDirector">
+                            <param id="0" name="Instance variable">normal</param>
+                            <param id="1" name="Value">dt</param>
+                        </action>
+                        <action id="-11" name="Add to" sid="8904306039077074" type="AIDirector">
+                            <param id="0" name="Instance variable">quicken</param>
+                            <param id="1" name="Value">dt</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="4140518526901886">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="3177498603121337" type="AIDirector">
+                            <param id="0" name="Instance variable">normal</param>
+                            <param id="1" name="Comparison">5</param>
+                            <param id="2" name="Value">AIDirector.normalMax</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="6912228081021231" type="Function">
+                            <param id="0" name="Name">&quot;spawn group&quot;</param>
+                            <param id="1" name="Parameter {n}">&quot;normal&quot;{###}3{###}1</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="3958723516829922" type="AIDirector">
+                            <param id="0" name="Instance variable">normal</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="3769952211036281">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="9437611691124371" type="AIDirector">
+                            <param id="0" name="Instance variable">normal</param>
+                            <param id="1" name="Comparison">5</param>
+                            <param id="2" name="Value">AIDirector.normalMax</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="2464739221184908" type="Function">
+                            <param id="0" name="Name">&quot;spawn group&quot;</param>
+                            <param id="1" name="Parameter {n}">&quot;normal&quot;{###}3{###}1</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="1550292941742204" type="AIDirector">
+                            <param id="0" name="Instance variable">normal</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="2273403092886171">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="8820304497468225" type="AIDirector">
+                            <param id="0" name="Instance variable">quicken</param>
+                            <param id="1" name="Comparison">5</param>
+                            <param id="2" name="Value">AIDirector.quickenMax</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="1936377716862436" type="Function">
+                            <param id="0" name="Name">&quot;spawn group&quot;</param>
+                            <param id="1" name="Parameter {n}">&quot;quicken&quot;{###}1{###}1</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="5106686904757393" type="AIDirector">
+                            <param id="0" name="Instance variable">quicken</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
         <event-group description="" sid="3579855747222307" title="collectible">
             <sub-events>
                 <event-block sid="8361703095010277">
@@ -590,5 +597,13 @@
                 </event-block>
             </sub-events>
         </event-group>
+        <event-block sid="6063937329164069">
+            <conditions />
+            <actions>
+                <action id="0" name="Set text" sid="4539424454752349" type="display">
+                    <param id="0" name="Text">&quot;score: &quot; &amp; score &amp; &quot;&#x0D;&#x0A;quickens: &quot; &amp; quickens &amp; &quot;&#x0D;&#x0A;time: &quot; &amp; &quot;asdf&quot;</param>
+                </action>
+            </actions>
+        </event-block>
     </events>
 </c2eventsheet>

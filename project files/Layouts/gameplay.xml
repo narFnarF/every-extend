@@ -307,6 +307,34 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
+                <instance type="AIDirector" uid="11">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <instance-variables>
+                        <normal>5</normal>
+                        <normalMax>5</normalMax>
+                        <quicken>5</quicken>
+                        <quickenMax>10</quickenMax>
+                    </instance-variables>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>548.059570313</x>
+                        <y>-72.411224365</y>
+                        <z>0</z>
+                        <width>48.31860733</width>
+                        <height>48.31860733</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
             </instances>
             <effects />
         </layer>

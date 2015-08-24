@@ -10,6 +10,7 @@
     <unique-id>2m2oqhlgof90t</unique-id>
     <saved-with-version>21202</saved-with-version>
     <used-plugins>
+        <plugin author="Scirra" id="Browser" version="1">Browser</plugin>
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
@@ -56,6 +57,9 @@
             </object-type>
             <object-type name="Keyboard" sid="3793982190329022">
                 <plugin id="Keyboard" />
+            </object-type>
+            <object-type name="Browser" sid="18501888668352">
+                <plugin id="Browser" />
             </object-type>
         </object-folder>
         <object-type name="player" sid="8968264721218001">
@@ -212,6 +216,20 @@
         <object-type name="display" sid="4970109556254132">
             <plugin id="Text" />
         </object-type>
+        <object-type name="AIDirector" sid="1116476408584509">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="normal" sid="1166961426728431" type="number" />
+                <instance-variable name="normalMax" sid="4849316040153376" type="number" />
+                <instance-variable name="quicken" sid="1571771274470261" type="number" />
+                <instance-variable name="quickenMax" sid="8448526123445042" type="number" />
+            </instance-variables>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9942355665023416" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
     </object-folder>
     <families />
     <layout-folder>
@@ -228,6 +246,7 @@
                 <analog-deadzone>25</analog-deadzone>
             </properties>
         </global-instance>
+        <global-instance type="Browser" uid="12" />
     </global-instances>
     <sounds-folder />
     <music-folder />
