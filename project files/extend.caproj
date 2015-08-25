@@ -67,6 +67,7 @@
             <instance-variables>
                 <instance-variable name="boniSinceLastExplosion" sid="4504106068651483" type="number" />
                 <instance-variable name="lifes" sid="2631683403992835" type="number" />
+                <instance-variable name="killSinceLastExplosion" sid="4926134840667279" type="number" />
             </instance-variables>
             <behaviors>
                 <behavior-type name="8Direction" sid="2059569107753229">

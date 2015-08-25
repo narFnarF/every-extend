@@ -80,6 +80,7 @@
                     <instance-variables>
                         <boniSinceLastExplosion>0</boniSinceLastExplosion>
                         <lifes>10</lifes>
+                        <killSinceLastExplosion>0</killSinceLastExplosion>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="8Direction">

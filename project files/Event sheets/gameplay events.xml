@@ -107,6 +107,10 @@
                             <param id="0" name="Instance variable">boniSinceLastExplosion</param>
                             <param id="1" name="Value">0</param>
                         </action>
+                        <action id="-10" name="Set value" sid="5910507953125189" type="player">
+                            <param id="0" name="Instance variable">killSinceLastExplosion</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
                         <action id="-12" name="Subtract from" sid="9928177174281192" type="player">
                             <param id="0" name="Instance variable">lifes</param>
                             <param id="1" name="Value">1</param>
@@ -154,7 +158,7 @@
                     </conditions>
                     <actions>
                         <action id="-16" name="Wait" sid="4588189383204006" type="System">
-                            <param id="0" name="Seconds">0.1</param>
+                            <param id="0" name="Seconds">0.05</param>
                         </action>
                         <action id="-3" name="Create object" sid="8557758154138044" type="System">
                             <param id="0" name="Object to create">explosion</param>
@@ -163,6 +167,30 @@
                             <param id="3" name="Y">cube.Y</param>
                         </action>
                         <action id="-9" name="Destroy" sid="3962666338570493" type="cube" />
+                        <action id="-11" name="Add to" sid="1216219057431383" type="player">
+                            <param id="0" name="Instance variable">killSinceLastExplosion</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action disabled="1" id="-3" name="Create object" sid="402703181702771" type="System">
+                            <param id="0" name="Object to create">scoreFloating</param>
+                            <param id="1" name="Layer">&quot;game&quot;</param>
+                            <param id="2" name="X">cube.X</param>
+                            <param id="3" name="Y">cube.Y</param>
+                        </action>
+                        <action behavior="Bullet" disabled="1" id="3" name="Set angle of motion" sid="3785179906901704" type="scoreFloating">
+                            <param id="0" name="Angle">-90</param>
+                        </action>
+                        <action disabled="1" id="0" name="Set text" sid="9470701965692382" type="scoreFloating">
+                            <param id="0" name="Text">player.killSinceLastExplosion &amp; &quot; X &quot; &amp; player.killSinceLastExplosion</param>
+                        </action>
+                        <action id="-10" name="Add to" sid="3620815255267241" type="System">
+                            <param id="0" name="Variable">score</param>
+                            <param id="1" name="Value">player.killSinceLastExplosion^2</param>
+                        </action>
+                        <action id="0" name="Call function" sid="3387785922922834" type="Function">
+                            <param id="0" name="Name">&quot;display floating score&quot;</param>
+                            <param id="1" name="Parameter {n}">player.killSinceLastExplosion &amp; &quot; X &quot; &amp; player.killSinceLastExplosion{###}cube.X{###}cube.Y</param>
+                        </action>
                     </actions>
                     <sub-events>
                         <event-block sid="3604633909374002">
@@ -489,7 +517,7 @@
                     <conditions>
                         <condition id="-14" name="Compare variable" sid="5578085204774831" type="System">
                             <param id="0" name="Variable">quickens</param>
-                            <param id="1" name="Comparison">0</param>
+                            <param id="1" name="Comparison">5</param>
                             <param id="2" name="Value">2</param>
                         </condition>
                     </conditions>
@@ -682,17 +710,21 @@
                                     <param id="0" name="Variable">score</param>
                                     <param id="1" name="Value">10*player.boniSinceLastExplosion^2 </param>
                                 </action>
-                                <action id="-3" name="Create object" sid="5940623297701199" type="System">
+                                <action disabled="1" id="-3" name="Create object" sid="5940623297701199" type="System">
                                     <param id="0" name="Object to create">scoreFloating</param>
                                     <param id="1" name="Layer">&quot;game&quot;</param>
                                     <param id="2" name="X">collectible.X</param>
                                     <param id="3" name="Y">collectible.Y</param>
                                 </action>
-                                <action id="0" name="Set text" sid="460186217754567" type="scoreFloating">
+                                <action disabled="1" id="0" name="Set text" sid="460186217754567" type="scoreFloating">
                                     <param id="0" name="Text">player.boniSinceLastExplosion &amp; &quot; x &quot; &amp; player.boniSinceLastExplosion*10</param>
                                 </action>
-                                <action behavior="Bullet" id="3" name="Set angle of motion" sid="8097458598859572" type="scoreFloating">
+                                <action behavior="Bullet" disabled="1" id="3" name="Set angle of motion" sid="8097458598859572" type="scoreFloating">
                                     <param id="0" name="Angle">-90</param>
+                                </action>
+                                <action id="0" name="Call function" sid="2936642869772612" type="Function">
+                                    <param id="0" name="Name">&quot;display floating score&quot;</param>
+                                    <param id="1" name="Parameter {n}">player.boniSinceLastExplosion &amp; &quot; x &quot; &amp; player.boniSinceLastExplosion*10{###}collectible.X{###}collectible.Y</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -708,6 +740,69 @@
                                 <action id="-10" name="Add to" sid="6541557306042467" type="System">
                                     <param id="0" name="Variable">quickens</param>
                                     <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="2598031950813221" title="score">
+            <sub-events>
+                <event-block sid="6063937329164069">
+                    <conditions />
+                    <actions>
+                        <action id="0" name="Set text" sid="4539424454752349" type="display">
+                            <param id="0" name="Text">&quot;score: &quot; &amp; score &amp; &quot;&#x0D;&#x0A;quickens: &quot; &amp; quickens &amp; &quot;&#x0D;&#x0A;time: &quot; &amp; &quot;asdf&quot; &amp; &quot;&#x0D;&#x0A;life: &quot; &amp; player.lifes</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="5496338917886586">
+                    <conditions>
+                        <condition id="0" name="On function" sid="6663516391573976" type="Function">
+                            <param id="0" name="Name">&quot;display floating score&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <variable constant="0" name="text" sid="7859855838982117" static="0" type="text"></variable>
+                        <variable constant="0" name="x" sid="802345521565358" static="0" type="number">0</variable>
+                        <variable constant="0" name="y" sid="9754218613537818" static="0" type="number">0</variable>
+                        <event-block sid="6950571853070552">
+                            <conditions />
+                            <actions>
+                                <action id="-9" name="Set value" sid="5727795203878291" type="System">
+                                    <param id="0" name="Variable">text</param>
+                                    <param id="1" name="Value">Function.Param(0)</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="7917179758579315" type="System">
+                                    <param id="0" name="Variable">x</param>
+                                    <param id="1" name="Value">Function.Param(1)</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="9632182391650307" type="System">
+                                    <param id="0" name="Variable">y</param>
+                                    <param id="1" name="Value">Function.Param(2)</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="4871897041823462">
+                            <conditions />
+                            <actions>
+                                <action id="-3" name="Create object" sid="1852708979055275" type="System">
+                                    <param id="0" name="Object to create">scoreFloating</param>
+                                    <param id="1" name="Layer">&quot;game&quot;</param>
+                                    <param id="2" name="X">x</param>
+                                    <param id="3" name="Y">y</param>
+                                </action>
+                                <action behavior="Bullet" id="3" name="Set angle of motion" sid="2086621220802998" type="scoreFloating">
+                                    <param id="0" name="Angle">-90</param>
+                                </action>
+                                <action id="0" name="Set text" sid="5582483908077741" type="scoreFloating">
+                                    <param id="0" name="Text">text</param>
+                                </action>
+                                <action disabled="1" id="14" name="Log" sid="4267033756236757" type="Browser">
+                                    <param id="0" name="Type">0</param>
+                                    <param id="1" name="Message">&quot;ici: &quot; &amp; scoreFloating.PickedCount</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -771,14 +866,6 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-block sid="6063937329164069">
-            <conditions />
-            <actions>
-                <action id="0" name="Set text" sid="4539424454752349" type="display">
-                    <param id="0" name="Text">&quot;score: &quot; &amp; score &amp; &quot;&#x0D;&#x0A;quickens: &quot; &amp; quickens &amp; &quot;&#x0D;&#x0A;time: &quot; &amp; &quot;asdf&quot; &amp; &quot;&#x0D;&#x0A;life: &quot; &amp; player.lifes</param>
-                </action>
-            </actions>
-        </event-block>
         <comment>for testing stuff</comment>
         <event-block sid="512275902393193">
             <conditions />
