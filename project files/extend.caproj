@@ -64,6 +64,10 @@
         </object-folder>
         <object-type name="player" sid="8968264721218001">
             <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="boniSinceLastExplosion" sid="4504106068651483" type="number" />
+                <instance-variable name="lifes" sid="2631683403992835" type="number" />
+            </instance-variables>
             <behaviors>
                 <behavior-type name="8Direction" sid="2059569107753229">
                     <behavior id="EightDir" />
@@ -224,11 +228,27 @@
                 <instance-variable name="quicken" sid="1571771274470261" type="number" />
                 <instance-variable name="quickenMax" sid="8448526123445042" type="number" />
             </instance-variables>
+            <behaviors>
+                <behavior-type name="Timer" sid="2497147448321753">
+                    <behavior id="Timer" />
+                </behavior-type>
+            </behaviors>
             <animation-folder>
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9942355665023416" speed="5">
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
                 </animation>
             </animation-folder>
+        </object-type>
+        <object-type name="scoreFloating" sid="7580384869337422">
+            <plugin id="Text" />
+            <behaviors>
+                <behavior-type name="Fade" sid="2765394205320473">
+                    <behavior id="Fade" />
+                </behavior-type>
+                <behavior-type name="Bullet" sid="6181152548962085">
+                    <behavior id="Bullet" />
+                </behavior-type>
+            </behaviors>
         </object-type>
     </object-folder>
     <families />
