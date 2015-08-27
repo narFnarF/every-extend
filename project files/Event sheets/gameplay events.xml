@@ -5,6 +5,19 @@
     <events>
         <variable constant="0" name="score" sid="3656604472204222" static="0" type="number">0</variable>
         <variable constant="0" name="quickens" sid="6521509192566379" static="0" type="number">0</variable>
+        <event-block sid="6951896234983628">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="8884505306234137" type="System" />
+            </conditions>
+            <actions>
+                <action disabled="1" id="0" name="Play" sid="6084923163816953" type="Audio">
+                    <param id="0" name="Audio file">EVERY_EXTEND_EXTRA_OST_-_Golden_Cross_USCUS</param>
+                    <param id="2" name="Loop">1</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;music&quot;</param>
+                </action>
+            </actions>
+        </event-block>
         <event-group description="" sid="7776942201502172" title="player">
             <sub-events>
                 <event-block any="1" sid="8960795594925836">
@@ -147,7 +160,7 @@
                 <comment>explodes</comment>
                 <event-block sid="7657808143982968">
                     <conditions>
-                        <condition id="0" name="On collision with another object" sid="6069795459913605" type="cube">
+                        <condition id="1" name="Is overlapping another object" sid="6069795459913605" type="cube">
                             <param id="0" name="Object">explosion</param>
                         </condition>
                         <condition id="-8" name="Compare two values" sid="7150000502116446" type="System">
@@ -283,7 +296,7 @@
                                 </action>
                             </actions>
                             <sub-events>
-                                <variable constant="0" name="angleVariation" sid="6387991088381746" static="0" type="number">20</variable>
+                                <variable constant="0" name="angleVariation" sid="6387991088381746" static="0" type="number">10</variable>
                                 <variable constant="0" name="side" sid="2375370323349945" static="0" type="text"></variable>
                                 <event-block sid="309979876549186">
                                     <conditions />
@@ -294,6 +307,7 @@
                                         </action>
                                     </actions>
                                     <sub-events>
+                                        <comment>on peut probablement réduire ça avec des &quot;either()&quot;</comment>
                                         <event-block sid="4841394892129995">
                                             <conditions>
                                                 <condition id="-14" name="Compare variable" sid="4920081328207231" type="System">
@@ -481,19 +495,19 @@
                             <actions>
                                 <action id="0" name="Call function" sid="9465182222545024" type="Function">
                                     <param id="0" name="Name">&quot;spawn group&quot;</param>
-                                    <param id="1" name="Parameter {n}">&quot;quicken&quot;{###}1{###}1{###}random(20, 20)</param>
+                                    <param id="1" name="Parameter {n}">&quot;quicken&quot;{###}1{###}1{###}40</param>
                                 </action>
                                 <action id="0" name="Call function" sid="1085174239823183" type="Function">
                                     <param id="0" name="Name">&quot;spawn group&quot;</param>
-                                    <param id="1" name="Parameter {n}">&quot;normal&quot;{###}3{###}1{###}random(20, 20)</param>
+                                    <param id="1" name="Parameter {n}">&quot;normal&quot;{###}3{###}1{###}40</param>
                                 </action>
-                                <action id="0" name="Call function" sid="7590224750156462" type="Function">
+                                <action id="0" name="Call function" sid="3339223078374093" type="Function">
                                     <param id="0" name="Name">&quot;spawn group&quot;</param>
-                                    <param id="1" name="Parameter {n}">&quot;normal&quot;{###}3{###}1{###}random(20, 20)</param>
+                                    <param id="1" name="Parameter {n}">&quot;normal&quot;{###}3{###}1{###}40</param>
                                 </action>
-                                <action id="0" name="Call function" sid="6085733583078818" type="Function">
+                                <action id="0" name="Call function" sid="1536193135175712" type="Function">
                                     <param id="0" name="Name">&quot;spawn group&quot;</param>
-                                    <param id="1" name="Parameter {n}">&quot;normal&quot;{###}3{###}1{###}random(20, 20)</param>
+                                    <param id="1" name="Parameter {n}">&quot;normal&quot;{###}3{###}1{###}40</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -529,7 +543,7 @@
                     <conditions>
                         <condition id="-14" name="Compare variable" sid="5578085204774831" type="System">
                             <param id="0" name="Variable">quickens</param>
-                            <param id="1" name="Comparison">5</param>
+                            <param id="1" name="Comparison">0</param>
                             <param id="2" name="Value">1</param>
                         </condition>
                     </conditions>
@@ -540,11 +554,11 @@
                                 <condition id="-4" name="Trigger once while true" sid="1212100330610821" type="System" />
                             </conditions>
                             <actions>
-                                <action id="0" name="Call function" sid="6469341279145211" type="Function">
+                                <action disabled="1" id="0" name="Call function" sid="6469341279145211" type="Function">
                                     <param id="0" name="Name">&quot;spawn group&quot;</param>
-                                    <param id="1" name="Parameter {n}">&quot;quicken&quot;{###}1{###}1{###}random(20, 100)</param>
+                                    <param id="1" name="Parameter {n}">&quot;quicken&quot;{###}1{###}1{###}random(20, 75)</param>
                                 </action>
-                                <action id="0" name="Call function" sid="3051357571415845" type="Function">
+                                <action disabled="1" id="0" name="Call function" sid="3051357571415845" type="Function">
                                     <param id="0" name="Name">&quot;spawn group&quot;</param>
                                     <param id="1" name="Parameter {n}">&quot;normal&quot;{###}5{###}1{###}random(20, 100)</param>
                                 </action>
@@ -559,7 +573,7 @@
                             <actions>
                                 <action id="0" name="Call function" sid="5101902361624843" type="Function">
                                     <param id="0" name="Name">&quot;spawn group&quot;</param>
-                                    <param id="1" name="Parameter {n}">&quot;normal&quot;{###}3{###}1{###}random(20, 100)</param>
+                                    <param id="1" name="Parameter {n}">&quot;normal&quot;{###}3{###}1{###}60</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -586,120 +600,230 @@
                         </event-block>
                     </sub-events>
                 </event-block>
-                <comment>each timers add time</comment>
-                <event-block disabled="1" sid="6733288389352093">
-                    <conditions />
-                    <actions>
-                        <action id="-11" name="Add to" sid="4337584311722304" type="AIDirector">
-                            <param id="0" name="Instance variable">normal</param>
-                            <param id="1" name="Value">dt</param>
-                        </action>
-                        <action id="-11" name="Add to" sid="8904306039077074" type="AIDirector">
-                            <param id="0" name="Instance variable">quicken</param>
-                            <param id="1" name="Value">dt</param>
-                        </action>
-                    </actions>
+                <event-block sid="5074904204246992">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="7445418190684512" type="System">
+                            <param id="0" name="Variable">quickens</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">2</param>
+                        </condition>
+                    </conditions>
+                    <actions />
                     <sub-events>
-                        <event-block disabled="1" sid="630204691288603">
-                            <conditions />
+                        <event-block sid="8744206689938478">
+                            <conditions>
+                                <condition id="-6" name="Every X seconds" sid="874733429441708" type="System">
+                                    <param id="0" name="Interval (seconds)">3</param>
+                                </condition>
+                            </conditions>
                             <actions>
-                                <action id="-10" name="Set value" sid="7856383917515674" type="AIDirector">
-                                    <param id="0" name="Instance variable">normalMax</param>
-                                    <param id="1" name="Value">10/(quickens+1)</param>
-                                </action>
-                                <action id="-10" name="Set value" sid="8684610865780731" type="AIDirector">
-                                    <param id="0" name="Instance variable">quickenMax</param>
-                                    <param id="1" name="Value">5*(quickens+1)</param>
+                                <action id="0" name="Call function" sid="4465061678789735" type="Function">
+                                    <param id="0" name="Name">&quot;spawn group&quot;</param>
+                                    <param id="1" name="Parameter {n}">&quot;normal&quot;{###}3{###}1{###}60</param>
                                 </action>
                             </actions>
                         </event-block>
-                    </sub-events>
-                </event-block>
-                <event-block disabled="1" sid="4140518526901886">
-                    <conditions>
-                        <condition id="-7" name="Compare instance variable" sid="3177498603121337" type="AIDirector">
-                            <param id="0" name="Instance variable">normal</param>
-                            <param id="1" name="Comparison">5</param>
-                            <param id="2" name="Value">AIDirector.normalMax</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="0" name="Call function" sid="6912228081021231" type="Function">
-                            <param id="0" name="Name">&quot;spawn group&quot;</param>
-                            <param id="1" name="Parameter {n}">&quot;normal&quot;{###}3{###}1</param>
-                        </action>
-                        <action id="-10" name="Set value" sid="3958723516829922" type="AIDirector">
-                            <param id="0" name="Instance variable">normal</param>
-                            <param id="1" name="Value">0</param>
-                        </action>
-                    </actions>
-                    <sub-events>
-                        <event-block disabled="1" sid="5228515553438712">
+                        <event-block sid="1754533149174159">
                             <conditions>
-                                <condition id="-14" name="Compare variable" sid="9473195372558777" type="System">
-                                    <param id="0" name="Variable">quickens</param>
-                                    <param id="1" name="Comparison">5</param>
-                                    <param id="2" name="Value">2</param>
+                                <condition id="-6" name="Every X seconds" sid="128578908863656" type="System">
+                                    <param id="0" name="Interval (seconds)">4</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                        </event-block>
+                        <event-block sid="3725785571934999">
+                            <conditions>
+                                <condition id="-6" name="Every X seconds" sid="2994078498083794" type="System">
+                                    <param id="0" name="Interval (seconds)">5</param>
                                 </condition>
                             </conditions>
                             <actions />
                         </event-block>
                     </sub-events>
                 </event-block>
-                <event-block disabled="1" sid="3769952211036281">
+                <event-block sid="6876385557365401">
                     <conditions>
-                        <condition id="-7" name="Compare instance variable" sid="9437611691124371" type="AIDirector">
-                            <param id="0" name="Instance variable">normal</param>
+                        <condition id="-14" name="Compare variable" sid="9792371620418924" type="System">
+                            <param id="0" name="Variable">quickens</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">3</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                </event-block>
+                <event-block any="1" sid="6812945914488526">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="5517870398222285" type="System">
+                            <param id="0" name="Variable">quickens</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">4</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="4696723080757832" type="System">
+                            <param id="0" name="Variable">quickens</param>
                             <param id="1" name="Comparison">5</param>
-                            <param id="2" name="Value">AIDirector.normalMax</param>
+                            <param id="2" name="Value">4</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="1395278710473913">
+                            <conditions>
+                                <condition id="-6" name="Every X seconds" sid="3968664619408189" type="System">
+                                    <param id="0" name="Interval (seconds)">3</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="4228728251092221" type="Function">
+                                    <param id="0" name="Name">&quot;spawn group&quot;</param>
+                                    <param id="1" name="Parameter {n}">&quot;normal&quot;{###}3{###}1{###}60</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="3290226070442642">
+                            <conditions>
+                                <condition id="-6" name="Every X seconds" sid="9325934393815218" type="System">
+                                    <param id="0" name="Interval (seconds)">7</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="3969540138128478" type="Function">
+                                    <param id="0" name="Name">&quot;spawn group&quot;</param>
+                                    <param id="1" name="Parameter {n}">&quot;normal&quot;{###}3{###}1{###}50</param>
+                                </action>
+                                <action id="0" name="Call function" sid="4656735656324094" type="Function">
+                                    <param id="0" name="Name">&quot;spawn group&quot;</param>
+                                    <param id="1" name="Parameter {n}">&quot;normal&quot;{###}5{###}1{###}50</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="138777137289768">
+                            <conditions>
+                                <condition id="-6" name="Every X seconds" sid="6987158121322275" type="System">
+                                    <param id="0" name="Interval (seconds)">5</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="7777778127802513" type="Function">
+                                    <param id="0" name="Name">&quot;spawn group&quot;</param>
+                                    <param id="1" name="Parameter {n}">&quot;normal&quot;{###}3{###}3{###}random(75, 200)</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="6420891836437632">
+                            <conditions>
+                                <condition id="-6" name="Every X seconds" sid="4299006237067039" type="System">
+                                    <param id="0" name="Interval (seconds)">10</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="4918966134854799" type="Function">
+                                    <param id="0" name="Name">&quot;spawn group&quot;</param>
+                                    <param id="1" name="Parameter {n}">&quot;normal&quot;{###}5{###}0{###}200</param>
+                                </action>
+                                <action id="0" name="Call function" sid="9818776614502016" type="Function">
+                                    <param id="0" name="Name">&quot;spawn group&quot;</param>
+                                    <param id="1" name="Parameter {n}">&quot;normal&quot;{###}5{###}0{###}200</param>
+                                </action>
+                                <action id="0" name="Call function" sid="2435551841702717" type="Function">
+                                    <param id="0" name="Name">&quot;spawn group&quot;</param>
+                                    <param id="1" name="Parameter {n}">&quot;normal&quot;{###}5{###}0{###}200</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="4566495783492898">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="6086074607933851" type="System">
+                            <param id="0" name="Variable">quickens</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">5</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                </event-block>
+                <event-block sid="2310179260769278">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="896924759152082" type="System">
+                            <param id="0" name="Variable">quickens</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">6</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                </event-block>
+                <event-block sid="8445084593066669">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="5341914142348177" type="System">
+                            <param id="0" name="Variable">quickens</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">7</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                </event-block>
+                <event-block sid="9243797617188839">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="2596645249070948" type="System">
+                            <param id="0" name="Variable">quickens</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">8</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                </event-block>
+                <comment>adjust game speed</comment>
+                <event-block sid="969722120611436">
+                    <conditions>
+                        <condition id="-21" name="Is between values" sid="2084528353325263" type="System">
+                            <param id="0" name="Value">quickens</param>
+                            <param id="1" name="Lower bound">0</param>
+                            <param id="2" name="Upper bound">4</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="0" name="Call function" sid="2464739221184908" type="Function">
-                            <param id="0" name="Name">&quot;spawn group&quot;</param>
-                            <param id="1" name="Parameter {n}">&quot;normal&quot;{###}5{###}1</param>
+                        <action id="-13" name="Set time scale" sid="5043225919261315" type="System">
+                            <param id="0" name="Time scale">1</param>
                         </action>
-                        <action id="-10" name="Set value" sid="1550292941742204" type="AIDirector">
-                            <param id="0" name="Instance variable">normal</param>
-                            <param id="1" name="Value">0</param>
+                        <action id="5" name="Set playback rate" sid="4596841666011676" type="Audio">
+                            <param id="0" name="Tag">&quot;music&quot;</param>
+                            <param id="1" name="Playback rate">1</param>
                         </action>
                     </actions>
                 </event-block>
-                <event-block disabled="1" sid="9934617008818816">
+                <event-block sid="7936541138719727">
                     <conditions>
-                        <condition id="-7" name="Compare instance variable" sid="7859791242412237" type="AIDirector">
-                            <param id="0" name="Instance variable">normal</param>
-                            <param id="1" name="Comparison">5</param>
-                            <param id="2" name="Value">AIDirector.normalMax</param>
+                        <condition id="-21" name="Is between values" sid="8576313740590945" type="System">
+                            <param id="0" name="Value">quickens</param>
+                            <param id="1" name="Lower bound">5</param>
+                            <param id="2" name="Upper bound">7</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="0" name="Call function" sid="5217420039296978" type="Function">
-                            <param id="0" name="Name">&quot;spawn group&quot;</param>
-                            <param id="1" name="Parameter {n}">&quot;normal&quot;{###}3{###}3</param>
+                        <action id="-13" name="Set time scale" sid="7563015458650024" type="System">
+                            <param id="0" name="Time scale">1.3</param>
                         </action>
-                        <action id="-10" name="Set value" sid="2415387791873404" type="AIDirector">
-                            <param id="0" name="Instance variable">normal</param>
-                            <param id="1" name="Value">0</param>
+                        <action id="5" name="Set playback rate" sid="6117185907248224" type="Audio">
+                            <param id="0" name="Tag">&quot;music&quot;</param>
+                            <param id="1" name="Playback rate">1.2</param>
                         </action>
                     </actions>
                 </event-block>
-                <event-block disabled="1" sid="2273403092886171">
+                <event-block sid="8491453102037791">
                     <conditions>
-                        <condition id="-7" name="Compare instance variable" sid="8820304497468225" type="AIDirector">
-                            <param id="0" name="Instance variable">quicken</param>
-                            <param id="1" name="Comparison">5</param>
-                            <param id="2" name="Value">AIDirector.quickenMax</param>
+                        <condition id="-14" name="Compare variable" sid="1272766438241707" type="System">
+                            <param id="0" name="Variable">quickens</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">8</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="0" name="Call function" sid="1936377716862436" type="Function">
-                            <param id="0" name="Name">&quot;spawn group&quot;</param>
-                            <param id="1" name="Parameter {n}">&quot;quicken&quot;{###}1{###}1</param>
+                        <action id="-13" name="Set time scale" sid="8907086405020378" type="System">
+                            <param id="0" name="Time scale">1.7</param>
                         </action>
-                        <action id="-10" name="Set value" sid="5106686904757393" type="AIDirector">
-                            <param id="0" name="Instance variable">quicken</param>
-                            <param id="1" name="Value">0</param>
+                        <action id="5" name="Set playback rate" sid="9968007916059238" type="Audio">
+                            <param id="0" name="Tag">&quot;music&quot;</param>
+                            <param id="1" name="Playback rate">1.3</param>
                         </action>
                     </actions>
                 </event-block>
