@@ -16,6 +16,10 @@
                     <param id="3" name="Volume">0</param>
                     <param id="1" name="Tag (optional)">&quot;music&quot;</param>
                 </action>
+                <action id="0" name="Call function" sid="5633049511203096" type="Function">
+                    <param id="0" name="Name">&quot;player destroyed&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
             </actions>
         </event-block>
         <event-group description="" sid="7776942201502172" title="player">
@@ -34,10 +38,15 @@
                     <sub-events>
                         <event-block sid="3136743719920977">
                             <conditions>
-                                <condition id="-9" name="Is visible" sid="8528652834164294" type="player" />
-                                <condition id="-10" name="Compare opacity" sid="7327758932403033" type="shield">
+                                <condition id="-8" name="Is boolean instance variable set" sid="8528652834164294" type="player">
+                                    <param id="0" name="Instance variable">alive</param>
+                                </condition>
+                                <condition disabled="1" id="-10" name="Compare opacity" sid="7327758932403033" type="shield">
                                     <param id="0" name="Comparison">0</param>
                                     <param id="1" name="Opacity">0</param>
+                                </condition>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="8497008011069284" type="player">
+                                    <param id="0" name="Instance variable">shield</param>
                                 </condition>
                             </conditions>
                             <actions>
@@ -56,15 +65,45 @@
                     </sub-events>
                 </event-block>
                 <event-block sid="409030754570707">
-                    <conditions>
-                        <condition id="-1" name="Every tick" sid="9660442476752268" type="System" />
-                    </conditions>
+                    <conditions />
                     <actions>
+                        <action id="-15" name="Set visible" sid="9851271174626333" type="player">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="9522103829886149" type="shield">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
                         <action id="-4" name="Set position to another object" sid="4931842660418118" type="shield">
                             <param id="0" name="Object">player</param>
                             <param id="1" name="Image point (optional)">0</param>
                         </action>
                     </actions>
+                    <sub-events>
+                        <event-block sid="8959023879309385">
+                            <conditions>
+                                <condition id="-8" name="Is boolean instance variable set" sid="8137745856207841" type="player">
+                                    <param id="0" name="Instance variable">alive</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-15" name="Set visible" sid="4598014607121967" type="player">
+                                    <param id="0" name="Visibility">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="4565179370064947">
+                            <conditions>
+                                <condition id="-8" name="Is boolean instance variable set" sid="8134188459461539" type="player">
+                                    <param id="0" name="Instance variable">shield</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-15" name="Set visible" sid="5333198355975657" type="shield">
+                                    <param id="0" name="Visibility">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
                 <event-block sid="4002875703470777">
                     <conditions>
@@ -73,13 +112,43 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-15" name="Set visible" sid="423832793484537" type="player">
+                        <action disabled="1" id="-15" name="Set visible" sid="423832793484537" type="player">
                             <param id="0" name="Visibility">1</param>
                         </action>
-                        <action id="-15" name="Set visible" sid="7891680499081253" type="shield">
+                        <action disabled="1" id="-15" name="Set visible" sid="7891680499081253" type="shield">
                             <param id="0" name="Visibility">1</param>
                         </action>
-                        <action behavior="Fade" id="0" name="Restart fade" sid="8739105973464978" type="shield" />
+                        <action id="-13" name="Set boolean" sid="3325824563159682" type="player">
+                            <param id="0" name="Instance variable">alive</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-13" name="Set boolean" sid="4909616581538339" type="player">
+                            <param id="0" name="Instance variable">shield</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-3" name="Set position" sid="3683932301616069" type="player">
+                            <param id="0" name="X">LayoutWidth/2</param>
+                            <param id="1" name="Y">LayoutHeight/2</param>
+                        </action>
+                        <action behavior="Timer" id="0" name="Start timer" sid="8188340774429127" type="player">
+                            <param id="0" name="Duration">1.0</param>
+                            <param id="1" name="Type">0</param>
+                            <param id="2" name="Tag">&quot;remove shield&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block disabled="1" sid="1622107418999153">
+                    <conditions>
+                        <condition id="-10" name="Compare opacity" sid="1873563324174793" type="shield">
+                            <param id="0" name="Comparison">0</param>
+                            <param id="1" name="Opacity">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" sid="3853279270962768" type="player">
+                            <param id="0" name="Instance variable">shield</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
                     </actions>
                 </event-block>
                 <event-block sid="1838549909633475">
@@ -101,19 +170,18 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-15" name="Set visible" sid="3820319809472252" type="player">
+                        <action id="-12" name="Subtract from" sid="9928177174281192" type="player">
+                            <param id="0" name="Instance variable">lifes</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-13" name="Set boolean" sid="1482139600938786" type="player">
+                            <param id="0" name="Instance variable">alive</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action disabled="1" id="-15" name="Set visible" sid="3820319809472252" type="player">
                             <param id="0" name="Visibility">0</param>
                         </action>
-                        <action behavior="Timer" id="0" name="Start timer" sid="4639070366089648" type="player">
-                            <param id="0" name="Duration">0.5</param>
-                            <param id="1" name="Type">0</param>
-                            <param id="2" name="Tag">&quot;respawn&quot;</param>
-                        </action>
-                        <action id="-3" name="Set position" sid="3683932301616069" type="player">
-                            <param id="0" name="X">LayoutWidth/2</param>
-                            <param id="1" name="Y">LayoutHeight/2</param>
-                        </action>
-                        <action id="-15" name="Set visible" sid="6602598790316731" type="shield">
+                        <action disabled="1" id="-15" name="Set visible" sid="6602598790316731" type="shield">
                             <param id="0" name="Visibility">0</param>
                         </action>
                         <action id="-10" name="Set value" sid="6063945675003382" type="player">
@@ -124,9 +192,23 @@
                             <param id="0" name="Instance variable">killSinceLastExplosion</param>
                             <param id="1" name="Value">0</param>
                         </action>
-                        <action id="-12" name="Subtract from" sid="9928177174281192" type="player">
-                            <param id="0" name="Instance variable">lifes</param>
-                            <param id="1" name="Value">1</param>
+                        <action behavior="Timer" id="0" name="Start timer" sid="4639070366089648" type="player">
+                            <param id="0" name="Duration">0.5</param>
+                            <param id="1" name="Type">0</param>
+                            <param id="2" name="Tag">&quot;respawn&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="1253193411337873">
+                    <conditions>
+                        <condition behavior="Timer" id="0" name="On timer" sid="2762454715044711" type="player">
+                            <param id="0" name="Tag">&quot;remove shield&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" sid="7949510168622771" type="player">
+                            <param id="0" name="Instance variable">shield</param>
+                            <param id="1" name="Value">0</param>
                         </action>
                     </actions>
                 </event-block>
@@ -137,24 +219,30 @@
                 <comment>kill player</comment>
                 <event-block sid="6121643507726416">
                     <conditions>
-                        <condition id="1" name="Is overlapping another object" sid="8459243103822172" type="cube">
-                            <param id="0" name="Object">player</param>
+                        <condition id="1" name="Is overlapping another object" sid="8459243103822172" type="player">
+                            <param id="0" name="Object">cube</param>
                         </condition>
                         <condition id="-10" name="Compare opacity" sid="9469401528560324" type="shield">
                             <param id="0" name="Comparison">0</param>
                             <param id="1" name="Opacity">0</param>
                         </condition>
-                        <condition id="-9" name="Is visible" sid="2401311366681633" type="player" />
+                        <condition id="-8" name="Is boolean instance variable set" sid="2401311366681633" type="player">
+                            <param id="0" name="Instance variable">alive</param>
+                        </condition>
                     </conditions>
                     <actions>
                         <action id="-3" name="Create object" sid="3201522008798606" type="System">
-                            <param id="0" name="Object to create">cube</param>
+                            <param id="0" name="Object to create">collectible</param>
                             <param id="1" name="Layer">&quot;game&quot;</param>
                             <param id="2" name="X">player.X</param>
                             <param id="3" name="Y">player.Y</param>
                         </action>
-                        <action id="-10" name="Set value" sid="3223291988100912" type="cube">
+                        <action disabled="1" id="-10" name="Set value" sid="3223291988100912" type="cube">
                             <param id="0" name="Instance variable">holding</param>
+                            <param id="1" name="Value">&quot;quicken&quot;</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="2262218539540515" type="collectible">
+                            <param id="0" name="Instance variable">type</param>
                             <param id="1" name="Value">&quot;quicken&quot;</param>
                         </action>
                         <action id="0" name="Call function" sid="8190324704075321" type="Function">
@@ -165,11 +253,11 @@
                             <param id="0" name="Variable">quickens</param>
                             <param id="1" name="Value">floor(quickens/2)</param>
                         </action>
-                        <action id="-22" name="Set angle toward position" sid="2362376400511956" type="cube">
+                        <action id="-22" name="Set angle toward position" sid="2362376400511956" type="collectible">
                             <param id="0" name="X">LayoutWidth/2</param>
                             <param id="1" name="Y">LayoutHeight/2</param>
                         </action>
-                        <action behavior="Bullet" id="0" name="Set speed" sid="7045977385012972" type="cube">
+                        <action behavior="Bullet" id="0" name="Set speed" sid="7045977385012972" type="collectible">
                             <param id="0" name="Speed">50</param>
                         </action>
                     </actions>
@@ -865,6 +953,9 @@
                     <conditions>
                         <condition id="0" name="On collision with another object" sid="2850255818596503" type="player">
                             <param id="0" name="Object">collectible</param>
+                        </condition>
+                        <condition id="-8" name="Is boolean instance variable set" sid="2660436523682749" type="player">
+                            <param id="0" name="Instance variable">alive</param>
                         </condition>
                     </conditions>
                     <actions>
