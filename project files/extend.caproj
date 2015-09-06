@@ -152,10 +152,14 @@
             <plugin id="Sprite" />
             <instance-variables>
                 <instance-variable name="holding" sid="6133926940772792" type="string" />
+                <instance-variable name="dangerous" sid="1620512008588589" type="boolean" />
             </instance-variables>
             <behaviors>
                 <behavior-type name="Bullet" sid="4328855970870088">
                     <behavior id="Bullet" />
+                </behavior-type>
+                <behavior-type name="Timer" sid="897716499398074">
+                    <behavior id="Timer" />
                 </behavior-type>
             </behaviors>
             <animation-folder>

@@ -211,6 +211,7 @@
                     </properties>
                     <instance-variables>
                         <holding>nothing</holding>
+                        <dangerous>true</dangerous>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
@@ -223,6 +224,7 @@
                                 <initial-state>Enabled</initial-state>
                             </properties>
                         </behavior-instance>
+                        <behavior-instance type="Timer" />
                     </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>

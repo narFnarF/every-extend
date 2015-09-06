@@ -202,6 +202,9 @@
                         <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="4924954908775957" type="player">
                             <param id="0" name="Instance variable">shield</param>
                         </condition>
+                        <condition id="-8" name="Is boolean instance variable set" sid="5448390377024184" type="cube">
+                            <param id="0" name="Instance variable">dangerous</param>
+                        </condition>
                     </conditions>
                     <actions>
                         <action id="0" name="Call function" sid="8190324704075321" type="Function">
@@ -233,7 +236,7 @@
                 <comment>explodes</comment>
                 <event-block sid="7657808143982968">
                     <conditions>
-                        <condition id="1" name="Is overlapping another object" sid="6069795459913605" type="cube">
+                        <condition id="0" name="On collision with another object" sid="6069795459913605" type="cube">
                             <param id="0" name="Object">explosion</param>
                         </condition>
                         <condition id="-8" name="Compare two values" sid="7150000502116446" type="System">
@@ -241,11 +244,35 @@
                             <param id="1" name="Comparison">3</param>
                             <param id="2" name="Second value">200</param>
                         </condition>
+                        <condition id="-8" name="Is boolean instance variable set" sid="6318533962695444" type="cube">
+                            <param id="0" name="Instance variable">dangerous</param>
+                        </condition>
                     </conditions>
                     <actions>
-                        <action id="-16" name="Wait" sid="4588189383204006" type="System">
+                        <action id="-13" name="Set boolean" sid="8816644200072151" type="cube">
+                            <param id="0" name="Instance variable">dangerous</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action behavior="Timer" id="0" name="Start timer" sid="5685326430488701" type="cube">
+                            <param id="0" name="Duration">0.05</param>
+                            <param id="1" name="Type">0</param>
+                            <param id="2" name="Tag">&quot;explosion&quot;</param>
+                        </action>
+                        <action disabled="1" id="-16" name="Wait" sid="4588189383204006" type="System">
                             <param id="0" name="Seconds">0.05</param>
                         </action>
+                    </actions>
+                </event-block>
+                <event-block sid="5821398227644372">
+                    <conditions>
+                        <condition behavior="Timer" id="0" name="On timer" sid="4985817895857715" type="cube">
+                            <param id="0" name="Tag">&quot;explosion&quot;</param>
+                        </condition>
+                        <condition id="-11" name="For Each" sid="6522567259619501" type="System">
+                            <param id="0" name="Object">cube</param>
+                        </condition>
+                    </conditions>
+                    <actions>
                         <action id="-3" name="Create object" sid="8557758154138044" type="System">
                             <param id="0" name="Object to create">explosion</param>
                             <param id="1" name="Layer">&quot;game&quot;</param>
@@ -280,12 +307,13 @@
                                 </action>
                                 <action id="0" name="Call function" sid="9358498251138391" type="Function">
                                     <param id="0" name="Name">&quot;spawn collectible&quot;</param>
-                                    <param id="1" name="Parameter {n}">cube.X{###}cube.Y{###}cube.holding{###}cube.Bullet.Speed*0.3{###}cube.Angle</param>
+                                    <param id="1" name="Parameter {n}">cube.X{###}cube.Y{###}cube.holding{###}cube.Bullet.Speed*0.2{###}cube.Angle</param>
                                 </action>
                             </actions>
                         </event-block>
                     </sub-events>
                 </event-block>
+                <comment>set cube&apos;s visual (if holding something)</comment>
                 <event-block sid="3078873460509375">
                     <conditions />
                     <actions>
