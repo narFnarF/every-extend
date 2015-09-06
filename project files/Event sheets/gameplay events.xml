@@ -121,8 +121,8 @@
                             <param id="1" name="Value">1</param>
                         </action>
                         <action id="-3" name="Set position" sid="3683932301616069" type="player">
-                            <param id="0" name="X">LayoutWidth/2</param>
-                            <param id="1" name="Y">LayoutHeight/2</param>
+                            <param id="0" name="X">center.X</param>
+                            <param id="1" name="Y">center.Y</param>
                         </action>
                         <action behavior="Timer" id="0" name="Start timer" sid="8188340774429127" type="player">
                             <param id="0" name="Duration">1.0</param>
@@ -157,12 +157,6 @@
                         <action id="-13" name="Set boolean" sid="1482139600938786" type="player">
                             <param id="0" name="Instance variable">alive</param>
                             <param id="1" name="Value">0</param>
-                        </action>
-                        <action disabled="1" id="-15" name="Set visible" sid="3820319809472252" type="player">
-                            <param id="0" name="Visibility">0</param>
-                        </action>
-                        <action disabled="1" id="-15" name="Set visible" sid="6602598790316731" type="shield">
-                            <param id="0" name="Visibility">0</param>
                         </action>
                         <action id="-10" name="Set value" sid="6063945675003382" type="player">
                             <param id="0" name="Instance variable">boniSinceLastExplosion</param>
@@ -302,11 +296,16 @@
                     </actions>
                 </event-block>
                 <comment>Destroy when it&apos;s too far</comment>
-                <comment>distance between itself and center &gt; 500 :: destroy()</comment>
-                <comment>à coder...</comment>
-                <event-block sid="5534858638601254">
-                    <conditions />
-                    <actions />
+                <event-block sid="2614533090735278">
+                    <conditions>
+                        <condition behavior="Bullet" id="1" name="Compare distance travelled" sid="6570882234281597" type="cube">
+                            <param id="0" name="Comparison">4</param>
+                            <param id="1" name="Distance">max(LayoutHeight, LayoutWidth)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="9918186729301763" type="cube" />
+                    </actions>
                 </event-block>
             </sub-events>
         </event-group>
@@ -1023,11 +1022,16 @@
                     </sub-events>
                 </event-block>
                 <comment>Destroy when it&apos;s too far</comment>
-                <comment>distance between itself and center &gt; 500 :: destroy()</comment>
-                <comment>à coder...</comment>
-                <event-block sid="2424701047089605">
-                    <conditions />
-                    <actions />
+                <event-block sid="1497023219210992">
+                    <conditions>
+                        <condition behavior="Bullet" id="1" name="Compare distance travelled" sid="1159868766354153" type="collectible">
+                            <param id="0" name="Comparison">4</param>
+                            <param id="1" name="Distance">max(LayoutHeight, LayoutWidth)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="1504353190373154" type="collectible" />
+                    </actions>
                 </event-block>
             </sub-events>
         </event-group>
@@ -1216,6 +1220,17 @@
         <event-block sid="4652301129899568">
             <conditions />
             <actions />
+        </event-block>
+        <event-block sid="8237388281714876">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="9302015733235909" type="System" />
+            </conditions>
+            <actions>
+                <action id="-3" name="Set position" sid="6952447266143762" type="center">
+                    <param id="0" name="X">LayoutWidth/2</param>
+                    <param id="1" name="Y">LayoutHeight/2</param>
+                </action>
+            </actions>
         </event-block>
     </events>
 </c2eventsheet>
