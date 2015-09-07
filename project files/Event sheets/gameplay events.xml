@@ -38,6 +38,14 @@
                 </action>
             </actions>
         </event-block>
+        <event-block sid="3336709731148688">
+            <conditions />
+            <actions>
+                <action id="3" name="Set progress" sid="5408466286383062" type="timeBar">
+                    <param id="0" name="Value">unlerp(90, 0, timer)</param>
+                </action>
+            </actions>
+        </event-block>
         <event-group description="" sid="7776942201502172" title="player">
             <sub-events>
                 <event-block any="1" sid="8960795594925836">
@@ -141,7 +149,7 @@
                             <param id="1" name="Y">center.Y</param>
                         </action>
                         <action behavior="Timer" id="0" name="Start timer" sid="8188340774429127" type="player">
-                            <param id="0" name="Duration">1.0</param>
+                            <param id="0" name="Duration">2</param>
                             <param id="1" name="Type">0</param>
                             <param id="2" name="Tag">&quot;remove shield&quot;</param>
                         </action>
@@ -226,6 +234,10 @@
                         <action id="0" name="Call function" sid="8190324704075321" type="Function">
                             <param id="0" name="Name">&quot;player destroyed&quot;</param>
                             <param id="1" name="Parameter {n}"></param>
+                        </action>
+                        <action id="-11" name="Subtract from" sid="9233980431705008" type="System">
+                            <param id="0" name="Variable">timer</param>
+                            <param id="1" name="Value">5</param>
                         </action>
                     </actions>
                     <sub-events>
@@ -1151,6 +1163,21 @@
                                 </action>
                             </actions>
                         </event-block>
+                        <event-block sid="497286902608713">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="302000561714092" type="collectible">
+                                    <param id="0" name="Instance variable">type</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;time&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Add to" sid="6371726873100472" type="System">
+                                    <param id="0" name="Variable">timer</param>
+                                    <param id="1" name="Value">10</param>
+                                </action>
+                            </actions>
+                        </event-block>
                     </sub-events>
                 </event-block>
                 <comment>Destroy when it&apos;s too far</comment>
@@ -1383,6 +1410,10 @@
                 <action disabled="1" id="0" name="Call function" sid="8888805017834787" type="Function">
                     <param id="0" name="Name">&quot;spawn group&quot;</param>
                     <param id="1" name="Parameter {n}">&quot;bomb&quot;{###}1{###}1{###}70</param>
+                </action>
+                <action disabled="1" id="0" name="Call function" sid="3107004896113841" type="Function">
+                    <param id="0" name="Name">&quot;spawn group&quot;</param>
+                    <param id="1" name="Parameter {n}">&quot;time&quot;{###}3{###}2{###}70</param>
                 </action>
             </actions>
         </event-block>

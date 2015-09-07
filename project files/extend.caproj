@@ -17,6 +17,7 @@
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="Scirra" id="Text" version="1">Text</plugin>
         <plugin author="Scirra" id="gamepad" version="1">Gamepad</plugin>
+        <plugin author="Scirra" id="progressbar" version="1">Progress bar</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
@@ -200,6 +201,15 @@
                         <image-point name="third down" x="0.5" y="0.904" />
                     </frame>
                 </animation>
+                <animation framecount="1" loop="0" name="time" pingpong="0" repeatcount="1" repeatto="0" sid="1819374647271511" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <image-point name="mid" x="0.5" y="0.5" />
+                        <image-point name="second up" x="0.5" y="0.308" />
+                        <image-point name="second down" x="0.5" y="0.676" />
+                        <image-point name="third up" x="0.496" y="0.108" />
+                        <image-point name="third down" x="0.5" y="0.904" />
+                    </frame>
+                </animation>
             </animation-folder>
         </object-type>
         <object-type name="collectible" sid="62695211737116">
@@ -223,6 +233,15 @@
                     </frame>
                 </animation>
                 <animation framecount="1" loop="0" name="quicken" pingpong="0" repeatcount="1" repeatto="0" sid="3448631171410024" speed="5">
+                    <frame duration="1" hotspotX="0.650943" hotspotY="0.527473">
+                        <image-point name="mid" x="0.650943" y="0.527473" />
+                        <image-point name="second up" x="0.650943" y="0.263736" />
+                        <image-point name="second down" x="0.650943" y="0.769231" />
+                        <image-point name="third up" x="0.641509" y="-0.010989" />
+                        <image-point name="third down" x="0.650943" y="1.08242" />
+                    </frame>
+                </animation>
+                <animation framecount="1" loop="0" name="time" pingpong="0" repeatcount="1" repeatto="0" sid="1482940514763852" speed="5">
                     <frame duration="1" hotspotX="0.650943" hotspotY="0.527473">
                         <image-point name="mid" x="0.650943" y="0.527473" />
                         <image-point name="second up" x="0.650943" y="0.263736" />
@@ -273,6 +292,9 @@
                     <frame duration="1" hotspotX="0.534351" hotspotY="0.580153" />
                 </animation>
             </animation-folder>
+        </object-type>
+        <object-type name="timeBar" sid="4360041189473498">
+            <plugin id="progressbar" />
         </object-type>
     </object-folder>
     <families />
