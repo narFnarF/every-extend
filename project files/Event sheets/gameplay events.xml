@@ -5,6 +5,7 @@
     <events>
         <variable constant="0" name="score" sid="3656604472204222" static="0" type="number">0</variable>
         <variable constant="0" name="quickens" sid="6521509192566379" static="0" type="number">0</variable>
+        <variable constant="0" name="timer" sid="2263237411826758" static="0" type="number">90</variable>
         <event-block sid="6951896234983628">
             <conditions>
                 <condition id="-2" name="On start of layout" sid="8884505306234137" type="System" />
@@ -19,6 +20,21 @@
                 <action id="0" name="Call function" sid="5633049511203096" type="Function">
                     <param id="0" name="Name">&quot;player destroyed&quot;</param>
                     <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action id="-4" name="Set position to another object" sid="3698914826069255" type="player">
+                    <param id="0" name="Object">center</param>
+                    <param id="1" name="Image point (optional)">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="8237388281714876">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="9302015733235909" type="System" />
+            </conditions>
+            <actions>
+                <action id="-3" name="Set position" sid="6952447266143762" type="center">
+                    <param id="0" name="X">LayoutWidth/2</param>
+                    <param id="1" name="Y">LayoutHeight/2</param>
                 </action>
             </actions>
         </event-block>
@@ -258,9 +274,6 @@
                             <param id="1" name="Type">0</param>
                             <param id="2" name="Tag">&quot;explosion&quot;</param>
                         </action>
-                        <action disabled="1" id="-16" name="Wait" sid="4588189383204006" type="System">
-                            <param id="0" name="Seconds">0.05</param>
-                        </action>
                     </actions>
                 </event-block>
                 <event-block sid="5821398227644372">
@@ -298,18 +311,37 @@
                                     <param id="2" name="Value">&quot;empty&quot;</param>
                                 </condition>
                             </conditions>
-                            <actions>
-                                <action disabled="1" id="-3" name="Create object" sid="1047524105560327" type="System">
-                                    <param id="0" name="Object to create">collectible</param>
-                                    <param id="1" name="Layer">&quot;game&quot;</param>
-                                    <param id="2" name="X">cube.X</param>
-                                    <param id="3" name="Y">cube.Y</param>
-                                </action>
-                                <action id="0" name="Call function" sid="9358498251138391" type="Function">
-                                    <param id="0" name="Name">&quot;spawn collectible&quot;</param>
-                                    <param id="1" name="Parameter {n}">cube.X{###}cube.Y{###}cube.holding{###}cube.Bullet.Speed*0.2{###}cube.Angle</param>
-                                </action>
-                            </actions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="4262018198224859">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="546098793127171" type="cube">
+                                            <param id="0" name="Instance variable">holding</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">&quot;bomb&quot;</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-3" name="Create object" sid="818468901382022" type="System">
+                                            <param id="0" name="Object to create">bomb</param>
+                                            <param id="1" name="Layer">&quot;game&quot;</param>
+                                            <param id="2" name="X">cube.X</param>
+                                            <param id="3" name="Y">cube.Y</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="3226252307230225">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="7943670852027201" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Call function" sid="9358498251138391" type="Function">
+                                            <param id="0" name="Name">&quot;spawn collectible&quot;</param>
+                                            <param id="1" name="Parameter {n}">cube.X{###}cube.Y{###}cube.holding{###}cube.Bullet.Speed*0.2{###}cube.Angle</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
                         </event-block>
                     </sub-events>
                 </event-block>
@@ -333,6 +365,72 @@
                     </conditions>
                     <actions>
                         <action id="-9" name="Destroy" sid="9918186729301763" type="cube" />
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="5975262955207094" title="bomb">
+            <sub-events>
+                <event-block sid="107049965131888">
+                    <conditions>
+                        <condition id="-18" name="On created" sid="8860642647070075" type="bomb" />
+                    </conditions>
+                    <actions>
+                        <action behavior="Bullet" disabled="1" id="0" name="Set speed" sid="8143784784640209" type="bomb">
+                            <param id="0" name="Speed">10</param>
+                        </action>
+                        <action behavior="Timer" id="0" name="Start timer" sid="8117740678193842" type="bomb">
+                            <param id="0" name="Duration">4</param>
+                            <param id="1" name="Type">0</param>
+                            <param id="2" name="Tag">&quot;explode&quot;</param>
+                        </action>
+                        <action behavior="Rotate" disabled="1" id="1" name="Set acceleration" sid="6631274704918902" type="bomb">
+                            <param id="0" name="Acceleration">10</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <comment>aim away from the closest explosion</comment>
+                        <event-block sid="3360277145479608">
+                            <conditions>
+                                <condition id="-15" name="Pick nearest/furthest" sid="667868118591538" type="explosion">
+                                    <param id="0" name="Which">0</param>
+                                    <param id="1" name="X">bomb.X</param>
+                                    <param id="2" name="Y">bomb.Y</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Bullet" id="3" name="Set angle of motion" sid="2363959255066405" type="bomb">
+                                    <param id="0" name="Angle">angle(bomb.X, bomb.Y, explosion.X, explosion.Y)+180</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>if no explosion(why???), aim away from the center</comment>
+                        <event-block sid="9577692196143519">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="1710890367426675" type="System" />
+                            </conditions>
+                            <actions>
+                                <action behavior="Bullet" id="3" name="Set angle of motion" sid="2150072544291342" type="bomb">
+                                    <param id="0" name="Angle">angle(bomb.X, bomb.Y, center.X, center.Y)+180</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="4038628993415512">
+                    <conditions>
+                        <condition behavior="Timer" id="0" name="On timer" sid="8101499803042193" type="bomb">
+                            <param id="0" name="Tag">&quot;explode&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="7611617483901374" type="System">
+                            <param id="0" name="Object to create">explosion</param>
+                            <param id="1" name="Layer">&quot;game&quot;</param>
+                            <param id="2" name="X">bomb.X</param>
+                            <param id="3" name="Y">bomb.Y</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="7980957090066316" type="bomb" />
                     </actions>
                 </event-block>
             </sub-events>
@@ -998,11 +1096,17 @@
                 </event-block>
                 <event-block sid="8361703095010277">
                     <conditions>
-                        <condition id="0" name="On collision with another object" sid="2850255818596503" type="player">
+                        <condition id="1" name="Is overlapping another object" sid="2850255818596503" type="player">
                             <param id="0" name="Object">collectible</param>
                         </condition>
                         <condition id="-8" name="Is boolean instance variable set" sid="2660436523682749" type="player">
                             <param id="0" name="Instance variable">alive</param>
+                        </condition>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="6264195356546002" type="player">
+                            <param id="0" name="Instance variable">shield</param>
+                        </condition>
+                        <condition id="-11" name="For Each" sid="8150317757791216" type="System">
+                            <param id="0" name="Object">collectible</param>
                         </condition>
                     </conditions>
                     <actions>
@@ -1063,6 +1167,21 @@
                 </event-block>
             </sub-events>
         </event-group>
+        <event-group description="" sid="5237664364025594" title="timer">
+            <sub-events>
+                <event-block sid="193911211655251">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="1945920608237567" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-11" name="Subtract from" sid="6879323455242018" type="System">
+                            <param id="0" name="Variable">timer</param>
+                            <param id="1" name="Value">dt</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
         <event-group description="" sid="2598031950813221" title="score">
             <sub-events>
                 <comment>display score and time and everything</comment>
@@ -1070,7 +1189,16 @@
                     <conditions />
                     <actions>
                         <action id="0" name="Set text" sid="4539424454752349" type="display">
-                            <param id="0" name="Text">&quot;score: &quot; &amp; score &amp; &quot;&#x0D;&#x0A;quickens: &quot; &amp; quickens &amp; &quot;&#x0D;&#x0A;time: &quot; &amp; &quot;2m30s&quot; &amp; &quot;&#x0D;&#x0A;life: &quot; &amp; player.lifes</param>
+                            <param id="0" name="Text">&quot;score: &quot; &amp; score &amp; newline</param>
+                        </action>
+                        <action id="1" name="Append text" sid="667604598451734" type="display">
+                            <param id="0" name="Text">&quot;quickens: &quot; &amp; quickens &amp; newline</param>
+                        </action>
+                        <action id="1" name="Append text" sid="2393526172369712" type="display">
+                            <param id="0" name="Text">&quot;time: &quot; &amp; ceil(timer) &amp; newline</param>
+                        </action>
+                        <action id="1" name="Append text" sid="6910096856422063" type="display">
+                            <param id="0" name="Text">&quot;life: &quot; &amp; player.lifes</param>
                         </action>
                     </actions>
                 </event-block>
@@ -1246,17 +1374,15 @@
             <actions />
         </event-block>
         <event-block sid="4652301129899568">
-            <conditions />
-            <actions />
-        </event-block>
-        <event-block sid="8237388281714876">
             <conditions>
-                <condition id="-1" name="Every tick" sid="9302015733235909" type="System" />
+                <condition id="-6" name="Every X seconds" sid="5228722660410119" type="System">
+                    <param id="0" name="Interval (seconds)">1.0</param>
+                </condition>
             </conditions>
             <actions>
-                <action id="-3" name="Set position" sid="6952447266143762" type="center">
-                    <param id="0" name="X">LayoutWidth/2</param>
-                    <param id="1" name="Y">LayoutHeight/2</param>
+                <action disabled="1" id="0" name="Call function" sid="8888805017834787" type="Function">
+                    <param id="0" name="Name">&quot;spawn group&quot;</param>
+                    <param id="1" name="Parameter {n}">&quot;bomb&quot;{###}1{###}1{###}70</param>
                 </action>
             </actions>
         </event-block>

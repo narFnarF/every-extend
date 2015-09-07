@@ -22,6 +22,7 @@
         <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
         <behavior author="Scirra" id="EightDir" version="1">8 Direction</behavior>
         <behavior author="Scirra" id="Fade" version="1">Fade</behavior>
+        <behavior author="Scirra" id="Rotate" version="1">Rotate</behavior>
         <behavior author="Scirra" id="Timer" version="1">Timer</behavior>
     </used-behaviors>
     <used-effects />
@@ -190,6 +191,15 @@
                         <image-point name="third down" x="0.5" y="0.904" />
                     </frame>
                 </animation>
+                <animation framecount="1" loop="0" name="bomb" pingpong="0" repeatcount="1" repeatto="0" sid="6279495336303359" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <image-point name="mid" x="0.5" y="0.5" />
+                        <image-point name="second up" x="0.5" y="0.308" />
+                        <image-point name="second down" x="0.5" y="0.676" />
+                        <image-point name="third up" x="0.496" y="0.108" />
+                        <image-point name="third down" x="0.5" y="0.904" />
+                    </frame>
+                </animation>
             </animation-folder>
         </object-type>
         <object-type name="collectible" sid="62695211737116">
@@ -226,25 +236,6 @@
         <object-type name="display" sid="4970109556254132">
             <plugin id="Text" />
         </object-type>
-        <object-type name="AIDirector" sid="1116476408584509">
-            <plugin id="Sprite" />
-            <instance-variables>
-                <instance-variable name="normal" sid="1166961426728431" type="number" />
-                <instance-variable name="normalMax" sid="4849316040153376" type="number" />
-                <instance-variable name="quicken" sid="1571771274470261" type="number" />
-                <instance-variable name="quickenMax" sid="8448526123445042" type="number" />
-            </instance-variables>
-            <behaviors>
-                <behavior-type name="Timer" sid="2497147448321753">
-                    <behavior id="Timer" />
-                </behavior-type>
-            </behaviors>
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9942355665023416" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                </animation>
-            </animation-folder>
-        </object-type>
         <object-type name="scoreFloating" sid="7580384869337422">
             <plugin id="Text" />
             <behaviors>
@@ -264,10 +255,30 @@
                 </animation>
             </animation-folder>
         </object-type>
+        <object-type name="bomb" sid="4020533017576724">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Bullet" sid="1700639798047342">
+                    <behavior id="Bullet" />
+                </behavior-type>
+                <behavior-type name="Timer" sid="4417440904505358">
+                    <behavior id="Timer" />
+                </behavior-type>
+                <behavior-type name="Rotate" sid="9284454626421567">
+                    <behavior id="Rotate" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5077157383969772" speed="5">
+                    <frame duration="1" hotspotX="0.534351" hotspotY="0.580153" />
+                </animation>
+            </animation-folder>
+        </object-type>
     </object-folder>
     <families />
     <layout-folder>
         <layout>gameplay.xml</layout>
+        <layout>object basket.xml</layout>
     </layout-folder>
     <event-folder>
         <event-sheet>gameplay events.xml</event-sheet>
