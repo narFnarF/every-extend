@@ -795,6 +795,19 @@
                                 </action>
                             </actions>
                         </event-block>
+                        <event-block sid="5592323647774818">
+                            <conditions>
+                                <condition id="-6" name="Every X seconds" sid="9090174160183194" type="System">
+                                    <param id="0" name="Interval (seconds)">10</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="9873319753419634" type="Function">
+                                    <param id="0" name="Name">&quot;spawn group&quot;</param>
+                                    <param id="1" name="Parameter {n}">&quot;quicken&quot;{###}1{###}1{###}random(30, 100)</param>
+                                </action>
+                            </actions>
+                        </event-block>
                     </sub-events>
                 </event-block>
                 <event-block sid="5074904204246992">
@@ -835,6 +848,19 @@
                                 </condition>
                             </conditions>
                             <actions />
+                        </event-block>
+                        <event-block sid="4327649980146348">
+                            <conditions>
+                                <condition id="-6" name="Every X seconds" sid="7867098401106252" type="System">
+                                    <param id="0" name="Interval (seconds)">10</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="6617844538537774" type="Function">
+                                    <param id="0" name="Name">&quot;spawn group&quot;</param>
+                                    <param id="1" name="Parameter {n}">&quot;quicken&quot;{###}1{###}1{###}random(50, 100)</param>
+                                </action>
+                            </actions>
                         </event-block>
                     </sub-events>
                 </event-block>
