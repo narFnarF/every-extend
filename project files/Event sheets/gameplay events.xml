@@ -1354,6 +1354,9 @@
                 <event-block sid="193911211655251">
                     <conditions>
                         <condition id="-1" name="Every tick" sid="1945920608237567" type="System" />
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="9748757470120436" type="player">
+                            <param id="0" name="Instance variable">gameOver</param>
+                        </condition>
                     </conditions>
                     <actions>
                         <action id="-11" name="Subtract from" sid="6879323455242018" type="System">
