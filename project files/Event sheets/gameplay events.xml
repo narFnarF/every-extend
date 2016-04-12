@@ -125,6 +125,13 @@
                                 <action id="-15" name="Set visible" sid="5333198355975657" type="shield">
                                     <param id="0" name="Visibility">1</param>
                                 </action>
+                                <action id="9" name="Set scale" sid="9364866777066712" type="shield">
+                                    <param id="0" name="Scale">unlerp(3, 1, player.Timer.CurrentTime(&quot;remove shield&quot;))</param>
+                                </action>
+                                <action disabled="1" id="14" name="Log" sid="7712407498844347" type="Browser">
+                                    <param id="0" name="Type">0</param>
+                                    <param id="1" name="Message">&quot;current time: &quot; &amp; player.Timer.CurrentTime(&quot;remove shield&quot;)</param>
+                                </action>
                             </actions>
                         </event-block>
                     </sub-events>
@@ -149,7 +156,7 @@
                             <param id="1" name="Y">center.Y</param>
                         </action>
                         <action behavior="Timer" id="0" name="Start timer" sid="8188340774429127" type="player">
-                            <param id="0" name="Duration">2</param>
+                            <param id="0" name="Duration">2.00</param>
                             <param id="1" name="Type">0</param>
                             <param id="2" name="Tag">&quot;remove shield&quot;</param>
                         </action>
@@ -197,6 +204,7 @@
                         </action>
                     </actions>
                 </event-block>
+                <comment>invincibility timer</comment>
                 <event-block sid="1253193411337873">
                     <conditions>
                         <condition behavior="Timer" id="0" name="On timer" sid="2762454715044711" type="player">
