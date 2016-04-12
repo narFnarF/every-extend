@@ -6,6 +6,15 @@
         <variable constant="0" name="score" sid="3656604472204222" static="0" type="number">0</variable>
         <variable constant="0" name="quickens" sid="6521509192566379" static="0" type="number">0</variable>
         <variable constant="0" name="timer" sid="2263237411826758" static="0" type="number">90</variable>
+        <event-block sid="8237388281714876">
+            <conditions />
+            <actions>
+                <action id="-3" name="Set position" sid="6952447266143762" type="center">
+                    <param id="0" name="X">LayoutWidth/2</param>
+                    <param id="1" name="Y">LayoutHeight/2</param>
+                </action>
+            </actions>
+        </event-block>
         <event-block sid="6951896234983628">
             <conditions>
                 <condition id="-2" name="On start of layout" sid="8884505306234137" type="System" />
@@ -27,27 +36,101 @@
                 </action>
             </actions>
         </event-block>
-        <event-block sid="8237388281714876">
-            <conditions>
-                <condition id="-1" name="Every tick" sid="9302015733235909" type="System" />
-            </conditions>
-            <actions>
-                <action id="-3" name="Set position" sid="6952447266143762" type="center">
-                    <param id="0" name="X">LayoutWidth/2</param>
-                    <param id="1" name="Y">LayoutHeight/2</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block sid="3336709731148688">
-            <conditions />
-            <actions>
-                <action id="3" name="Set progress" sid="5408466286383062" type="timeBar">
-                    <param id="0" name="Value">unlerp(0, 90, timer)</param>
-                </action>
-            </actions>
-        </event-block>
+        <event-group description="" sid="9885625763756684" title="game logic">
+            <sub-events>
+                <event-block sid="7878656733107343">
+                    <conditions>
+                        <condition id="0" name="On function" sid="7897385912017312" type="Function">
+                            <param id="0" name="Name">&quot;game over&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <variable constant="0" name="reason" sid="9925479259974068" static="0" type="text"></variable>
+                        <event-block sid="6506266365003786">
+                            <conditions />
+                            <actions>
+                                <action id="-9" name="Set value" sid="9666567913277698" type="System">
+                                    <param id="0" name="Variable">reason</param>
+                                    <param id="1" name="Value">Function.Param(0)</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="2204219417011267">
+                            <conditions />
+                            <actions>
+                                <action id="-13" name="Set boolean" sid="1831656905871756" type="player">
+                                    <param id="0" name="Instance variable">alive</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="6469483418561276" type="player">
+                                    <param id="0" name="Instance variable">gameOver</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-4" name="Set position to another object" sid="8481231983009067" type="gameOverTxt">
+                                    <param id="0" name="Object">center</param>
+                                    <param id="1" name="Image point (optional)">0</param>
+                                </action>
+                                <action id="0" name="Set text" sid="7988309111933071" type="gameOverTxt">
+                                    <param id="0" name="Text">&quot;Game over!&quot; &amp; newline</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="3460488719385455">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="4188778554348158" type="System">
+                                    <param id="0" name="Variable">reason</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;time&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="1" name="Append text" sid="4280749893214933" type="gameOverTxt">
+                                    <param id="0" name="Text">&quot;Out of time&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="2632785177961217">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="8817982702873002" type="System">
+                                    <param id="0" name="Variable">reason</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;lives&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="1" name="Append text" sid="5913586335359275" type="gameOverTxt">
+                                    <param id="0" name="Text">&quot;Out of lives&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="2854937761105428">
+                            <conditions />
+                            <actions>
+                                <action id="1" name="Append text" sid="7554159472247395" type="gameOverTxt">
+                                    <param id="0" name="Text">newline &amp; newline &amp; &quot;Press R to restart&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>restart layout</comment>
+                <event-block sid="6643136945582264">
+                    <conditions>
+                        <condition id="0" name="On key pressed" sid="6617698839696046" type="Keyboard">
+                            <param id="0" name="Key">82 (R)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-21" name="Reset global variables" sid="5480110221228281" type="System" />
+                        <action id="-26" name="Restart layout" sid="125431885873108" type="System" />
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
         <event-group description="" sid="7776942201502172" title="player">
             <sub-events>
+                <comment>Triggers an explosion</comment>
                 <event-block any="1" sid="8960795594925836">
                     <conditions>
                         <condition id="0" name="On key pressed" sid="583034789239851" type="Keyboard">
@@ -64,6 +147,9 @@
                             <conditions>
                                 <condition id="-8" name="Is boolean instance variable set" sid="8528652834164294" type="player">
                                     <param id="0" name="Instance variable">alive</param>
+                                </condition>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="6266243217207771" type="player">
+                                    <param id="0" name="Instance variable">gameOver</param>
                                 </condition>
                                 <condition disabled="1" id="-10" name="Compare opacity" sid="7327758932403033" type="shield">
                                     <param id="0" name="Comparison">0</param>
@@ -103,36 +189,46 @@
                         </action>
                     </actions>
                     <sub-events>
-                        <event-block sid="8959023879309385">
+                        <event-block sid="9077036714317204">
                             <conditions>
-                                <condition id="-8" name="Is boolean instance variable set" sid="8137745856207841" type="player">
-                                    <param id="0" name="Instance variable">alive</param>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="2422414586633294" type="player">
+                                    <param id="0" name="Instance variable">gameOver</param>
                                 </condition>
                             </conditions>
-                            <actions>
-                                <action id="-15" name="Set visible" sid="4598014607121967" type="player">
-                                    <param id="0" name="Visibility">1</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <event-block sid="4565179370064947">
-                            <conditions>
-                                <condition id="-8" name="Is boolean instance variable set" sid="8134188459461539" type="player">
-                                    <param id="0" name="Instance variable">shield</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-15" name="Set visible" sid="5333198355975657" type="shield">
-                                    <param id="0" name="Visibility">1</param>
-                                </action>
-                                <action id="9" name="Set scale" sid="9364866777066712" type="shield">
-                                    <param id="0" name="Scale">unlerp(3, 1, player.Timer.CurrentTime(&quot;remove shield&quot;))</param>
-                                </action>
-                                <action disabled="1" id="14" name="Log" sid="7712407498844347" type="Browser">
-                                    <param id="0" name="Type">0</param>
-                                    <param id="1" name="Message">&quot;current time: &quot; &amp; player.Timer.CurrentTime(&quot;remove shield&quot;)</param>
-                                </action>
-                            </actions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="8959023879309385">
+                                    <conditions>
+                                        <condition id="-8" name="Is boolean instance variable set" sid="8137745856207841" type="player">
+                                            <param id="0" name="Instance variable">alive</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-15" name="Set visible" sid="4598014607121967" type="player">
+                                            <param id="0" name="Visibility">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="4565179370064947">
+                                    <conditions>
+                                        <condition id="-8" name="Is boolean instance variable set" sid="8134188459461539" type="player">
+                                            <param id="0" name="Instance variable">shield</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-15" name="Set visible" sid="5333198355975657" type="shield">
+                                            <param id="0" name="Visibility">1</param>
+                                        </action>
+                                        <action id="9" name="Set scale" sid="9364866777066712" type="shield">
+                                            <param id="0" name="Scale">unlerp(3, 1, player.Timer.CurrentTime(&quot;remove shield&quot;))</param>
+                                        </action>
+                                        <action disabled="1" id="14" name="Log" sid="7712407498844347" type="Browser">
+                                            <param id="0" name="Type">0</param>
+                                            <param id="1" name="Message">&quot;current time: &quot; &amp; player.Timer.CurrentTime(&quot;remove shield&quot;)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
                         </event-block>
                     </sub-events>
                 </event-block>
@@ -162,6 +258,7 @@
                         </action>
                     </actions>
                 </event-block>
+                <comment>There&apos;s probably a more elegant way to slow the player when it&apos;s out of the circle. Maybe set the speed to a lower value?</comment>
                 <event-block sid="1838549909633475">
                     <conditions>
                         <condition id="-8" name="Compare two values" sid="2619987674113067" type="System">
@@ -218,6 +315,24 @@
                         </action>
                     </actions>
                 </event-block>
+                <event-block sid="4899190864147132">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="3192514382756918" type="player">
+                            <param id="0" name="Instance variable">lifes</param>
+                            <param id="1" name="Comparison">3</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="7861606285714219" type="player">
+                            <param id="0" name="Instance variable">alive</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="5380715964607458" type="Function">
+                            <param id="0" name="Name">&quot;game over&quot;</param>
+                            <param id="1" name="Parameter {n}">&quot;lives&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
             </sub-events>
         </event-group>
         <event-group description="" sid="1122064752501674" title="cubes">
@@ -233,6 +348,9 @@
                         </condition>
                         <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="4924954908775957" type="player">
                             <param id="0" name="Instance variable">shield</param>
+                        </condition>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="4061262125245973" type="player">
+                            <param id="0" name="Instance variable">gameOver</param>
                         </condition>
                         <condition id="-8" name="Is boolean instance variable set" sid="5448390377024184" type="cube">
                             <param id="0" name="Instance variable">dangerous</param>
@@ -1151,6 +1269,9 @@
                         <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="6264195356546002" type="player">
                             <param id="0" name="Instance variable">shield</param>
                         </condition>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="7601928643217543" type="player">
+                            <param id="0" name="Instance variable">gameOver</param>
+                        </condition>
                         <condition id="-11" name="For Each" sid="8150317757791216" type="System">
                             <param id="0" name="Object">collectible</param>
                         </condition>
@@ -1241,79 +1362,111 @@
                         </action>
                     </actions>
                 </event-block>
-            </sub-events>
-        </event-group>
-        <event-group description="" sid="2598031950813221" title="score">
-            <sub-events>
-                <comment>display score and time and everything</comment>
-                <event-block sid="6063937329164069">
-                    <conditions />
+                <comment>when the time reaches 0, kill the player and end the game</comment>
+                <event-block sid="2763306873619368">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="7866589533664656" type="System">
+                            <param id="0" name="First value">timer</param>
+                            <param id="1" name="Comparison">3</param>
+                            <param id="2" name="Second value">0</param>
+                        </condition>
+                    </conditions>
                     <actions>
-                        <action id="0" name="Set text" sid="4539424454752349" type="display">
-                            <param id="0" name="Text">&quot;score: &quot; &amp; score &amp; newline</param>
+                        <action id="-9" name="Set value" sid="6101539301009484" type="System">
+                            <param id="0" name="Variable">timer</param>
+                            <param id="1" name="Value">0</param>
                         </action>
-                        <action id="1" name="Append text" sid="667604598451734" type="display">
-                            <param id="0" name="Text">&quot;quickens: &quot; &amp; quickens &amp; newline</param>
-                        </action>
-                        <action id="1" name="Append text" sid="2393526172369712" type="display">
-                            <param id="0" name="Text">&quot;time: &quot; &amp; ceil(timer) &amp; newline</param>
-                        </action>
-                        <action id="1" name="Append text" sid="6910096856422063" type="display">
-                            <param id="0" name="Text">&quot;life: &quot; &amp; player.lifes</param>
+                        <action id="0" name="Call function" sid="8305872448652185" type="Function">
+                            <param id="0" name="Name">&quot;game over&quot;</param>
+                            <param id="1" name="Parameter {n}">&quot;time&quot;</param>
                         </action>
                     </actions>
                 </event-block>
-                <event-block sid="5496338917886586">
-                    <conditions>
-                        <condition id="0" name="On function" sid="6663516391573976" type="Function">
-                            <param id="0" name="Name">&quot;display floating score&quot;</param>
-                        </condition>
-                    </conditions>
-                    <actions />
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="3120382039281255" title="HUD">
+            <sub-events>
+                <event-block sid="3336709731148688">
+                    <conditions />
+                    <actions>
+                        <action id="3" name="Set progress" sid="5408466286383062" type="timeBar">
+                            <param id="0" name="Value">unlerp(0, 90, timer)</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-group description="" sid="2598031950813221" title="score">
                     <sub-events>
-                        <variable constant="0" name="text" sid="7859855838982117" static="0" type="text"></variable>
-                        <variable constant="0" name="x" sid="802345521565358" static="0" type="number">0</variable>
-                        <variable constant="0" name="y" sid="9754218613537818" static="0" type="number">0</variable>
-                        <event-block sid="6950571853070552">
+                        <comment>display score and time and everything</comment>
+                        <event-block sid="6063937329164069">
                             <conditions />
                             <actions>
-                                <action id="-9" name="Set value" sid="5727795203878291" type="System">
-                                    <param id="0" name="Variable">text</param>
-                                    <param id="1" name="Value">Function.Param(0)</param>
+                                <action id="0" name="Set text" sid="4539424454752349" type="display">
+                                    <param id="0" name="Text">&quot;score: &quot; &amp; score &amp; newline</param>
                                 </action>
-                                <action id="-9" name="Set value" sid="7917179758579315" type="System">
-                                    <param id="0" name="Variable">x</param>
-                                    <param id="1" name="Value">Function.Param(1)</param>
+                                <action id="1" name="Append text" sid="667604598451734" type="display">
+                                    <param id="0" name="Text">&quot;quickens: &quot; &amp; quickens &amp; newline</param>
                                 </action>
-                                <action id="-9" name="Set value" sid="9632182391650307" type="System">
-                                    <param id="0" name="Variable">y</param>
-                                    <param id="1" name="Value">Function.Param(2)</param>
+                                <action id="1" name="Append text" sid="2393526172369712" type="display">
+                                    <param id="0" name="Text">&quot;time: &quot; &amp; ceil(timer) &amp; newline</param>
+                                </action>
+                                <action id="1" name="Append text" sid="6910096856422063" type="display">
+                                    <param id="0" name="Text">&quot;life: &quot; &amp; player.lifes</param>
                                 </action>
                             </actions>
                         </event-block>
-                        <event-block sid="4871897041823462">
-                            <conditions />
-                            <actions>
-                                <action id="-3" name="Create object" sid="1852708979055275" type="System">
-                                    <param id="0" name="Object to create">scoreFloating</param>
-                                    <param id="1" name="Layer">&quot;game&quot;</param>
-                                    <param id="2" name="X">x</param>
-                                    <param id="3" name="Y">y</param>
-                                </action>
-                                <action behavior="Bullet" id="3" name="Set angle of motion" sid="2086621220802998" type="scoreFloating">
-                                    <param id="0" name="Angle">-90</param>
-                                </action>
-                                <action id="0" name="Set text" sid="5582483908077741" type="scoreFloating">
-                                    <param id="0" name="Text">text</param>
-                                </action>
-                                <action disabled="1" id="14" name="Log" sid="4267033756236757" type="Browser">
-                                    <param id="0" name="Type">0</param>
-                                    <param id="1" name="Message">&quot;ici: &quot; &amp; scoreFloating.PickedCount</param>
-                                </action>
-                            </actions>
+                        <event-block sid="5496338917886586">
+                            <conditions>
+                                <condition id="0" name="On function" sid="6663516391573976" type="Function">
+                                    <param id="0" name="Name">&quot;display floating score&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <variable constant="0" name="text" sid="7859855838982117" static="0" type="text"></variable>
+                                <variable constant="0" name="x" sid="802345521565358" static="0" type="number">0</variable>
+                                <variable constant="0" name="y" sid="9754218613537818" static="0" type="number">0</variable>
+                                <event-block sid="6950571853070552">
+                                    <conditions />
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="5727795203878291" type="System">
+                                            <param id="0" name="Variable">text</param>
+                                            <param id="1" name="Value">Function.Param(0)</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="7917179758579315" type="System">
+                                            <param id="0" name="Variable">x</param>
+                                            <param id="1" name="Value">Function.Param(1)</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="9632182391650307" type="System">
+                                            <param id="0" name="Variable">y</param>
+                                            <param id="1" name="Value">Function.Param(2)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="4871897041823462">
+                                    <conditions />
+                                    <actions>
+                                        <action id="-3" name="Create object" sid="1852708979055275" type="System">
+                                            <param id="0" name="Object to create">scoreFloating</param>
+                                            <param id="1" name="Layer">&quot;game&quot;</param>
+                                            <param id="2" name="X">x</param>
+                                            <param id="3" name="Y">y</param>
+                                        </action>
+                                        <action behavior="Bullet" id="3" name="Set angle of motion" sid="2086621220802998" type="scoreFloating">
+                                            <param id="0" name="Angle">-90</param>
+                                        </action>
+                                        <action id="0" name="Set text" sid="5582483908077741" type="scoreFloating">
+                                            <param id="0" name="Text">text</param>
+                                        </action>
+                                        <action disabled="1" id="14" name="Log" sid="4267033756236757" type="Browser">
+                                            <param id="0" name="Type">0</param>
+                                            <param id="1" name="Message">&quot;ici: &quot; &amp; scoreFloating.PickedCount</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
                         </event-block>
                     </sub-events>
-                </event-block>
+                </event-group>
             </sub-events>
         </event-group>
         <event-group description="" sid="1979279294309583" title="Controller">
@@ -1412,18 +1565,6 @@
                                     </actions>
                                 </event-block>
                             </sub-events>
-                        </event-block>
-                        <comment>restart layout</comment>
-                        <event-block sid="6643136945582264">
-                            <conditions>
-                                <condition id="0" name="On key pressed" sid="6617698839696046" type="Keyboard">
-                                    <param id="0" name="Key">82 (R)</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-21" name="Reset global variables" sid="5480110221228281" type="System" />
-                                <action id="-26" name="Restart layout" sid="125431885873108" type="System" />
-                            </actions>
                         </event-block>
                     </sub-events>
                 </event-block>
