@@ -42,7 +42,7 @@
             <conditions />
             <actions>
                 <action id="3" name="Set progress" sid="5408466286383062" type="timeBar">
-                    <param id="0" name="Value">unlerp(90, 0, timer)</param>
+                    <param id="0" name="Value">unlerp(0, 90, timer)</param>
                 </action>
             </actions>
         </event-block>
