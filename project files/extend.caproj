@@ -8,7 +8,7 @@
     <author-website>http://www.narF.ca</author-website>
     <app-id>ca.narF.extend</app-id>
     <unique-id>2m2oqhlgof90t</unique-id>
-    <saved-with-version>21202</saved-with-version>
+    <saved-with-version>22100</saved-with-version>
     <used-plugins>
         <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
         <plugin author="Scirra" id="Browser" version="1">Browser</plugin>
@@ -73,6 +73,7 @@
             <instance-variables>
                 <instance-variable name="alive" sid="8485879376357944" type="boolean" />
                 <instance-variable name="shield" sid="4987629131211765" type="boolean" />
+                <instance-variable comment="When the game is over (timer end or no more lives)" name="gameOver" sid="2439862081986623" type="boolean" />
                 <instance-variable name="lifes" sid="2631683403992835" type="number" />
                 <instance-variable name="boniSinceLastExplosion" sid="4504106068651483" type="number" />
                 <instance-variable name="killSinceLastExplosion" sid="4926134840667279" type="number" />
@@ -295,6 +296,9 @@
         </object-type>
         <object-type name="timeBar" sid="4360041189473498">
             <plugin id="progressbar" />
+        </object-type>
+        <object-type name="gameOverTxt" sid="318868532727028">
+            <plugin id="Text" />
         </object-type>
     </object-folder>
     <families />
